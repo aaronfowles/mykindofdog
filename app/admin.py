@@ -1,9 +1,9 @@
 from django.contrib import admin
-from app.models import Activity, Tag, ActivityTag, UserSelection
+from app.models import Dog, Tag, DogTag, UserSelection
 # Register your models here.
 
-admin.site.register(Activity)
+admin.site.register(Dog)
 admin.site.register(Tag)
-admin.site.register(ActivityTag)
+admin.site.register(DogTag)
 admin.site.register(UserSelection)
 

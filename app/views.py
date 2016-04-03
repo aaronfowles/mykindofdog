@@ -36,7 +36,7 @@ def index(request):
         context["image_url"][str(all_tags[rand_selection[i]].id)] = image_url 
     return render(request, 'app/index.html', context)
 
-def get_activities(request):
+def get_dogs(request):
     context = {}
     #get no list from request
     no_list = request.GET.get("no_list","")
@@ -49,37 +49,36 @@ def get_activities(request):
     if yes_list[0] == '':
         yes_list = [3,4]
 
-    all_act_tags = models.ActivityTag.objects.all()
-    acts_to_exclude = all_act_tags.filter(tag_id__in=no_list)
-    act_ids_to_exclude = []
-    for act in acts_to_exclude:
-        act_ids_to_exclude.append(act.activity_id.id)
+    all_dog_tags = models.DogTag.objects.all()
+    dogs_to_exclude = all_dog_tags.filter(tag_id__in=no_list)
+    dog_ids_to_exclude = []
+    for dog in dogs_to_exclude:
+        dog_ids_to_exclude.append(dog.dog_id.id)
 
-    acts_to_prefer = models.ActivityTag.objects.filter(tag_id__in=yes_list)
-    act_ids_to_prefer = []
-    for act in acts_to_prefer:
-        act_ids_to_prefer.append(act.activity_id.id)
+    dogs_to_prefer = models.DogTag.objects.filter(tag_id__in=yes_list)
+    dog_ids_to_prefer = []
+    for dog in dogs_to_prefer:
+        dog_ids_to_prefer.append(dog.dog_id.id)
 
-    act_ids_to_remove = set(act_ids_to_prefer).intersection(act_ids_to_exclude)
-    act_ids_to_select = [i for i in act_ids_to_prefer if i not in act_ids_to_remove]
-    chosen_activity = None
-    if (len(act_ids_to_select) == 0):
-        chosen_activity = models.Activity.objects.exclude(id__in=act_ids_to_exclude)[0]
-    elif (len(act_ids_to_select) == 1):
-        chosen_activity = models.Activity.objects.filter(id__in=act_ids_to_select)[0]
+    dog_ids_to_remove = set(dog_ids_to_prefer).intersection(dog_ids_to_exclude)
+    dog_ids_to_select = [i for i in dog_ids_to_prefer if i not in dog_ids_to_remove]
+    chosen_dog = None
+    if (len(dog_ids_to_select) == 0):
+        chosen_dog = models.Dog.objects.exclude(id__in=dog_ids_to_exclude)[0]
+    elif (len(dog_ids_to_select) == 1):
+        chosen_dog = models.Dog.objects.filter(id__in=dog_ids_to_select)[0]
     else:
-        a = models.ActivityTag.objects.filter(activity_id__in=act_ids_to_select)
+        a = models.DogTag.objects.filter(dog_id__in=dog_ids_to_select)
         a2 = a.filter(tag_id__in=yes_list)
-        b = a2.values('activity_id').annotate(total=Count('activity_id')).order_by('-total')
-        chosen_activity = models.Activity.objects.get(id=b[0]['activity_id'])
-    if (chosen_activity == None):
-        chosen_activity.activity_desc = "Hmmm, iDunno doesn't know..."
+        b = a2.values('dog_id').annotate(total=Count('dog_id')).order_by('-total')
+        chosen_dog = models.Dog.objects.get(id=b[0]['dog_id'])
+    if (chosen_dog == None):
+        chosen_dog.dog_desc = "Hmmm, iDunno doesn't know..."
 
-    context['activity_id'] = chosen_activity.id
-    context['activity_name'] = chosen_activity.activity_name
-    context['search_term'] = chosen_activity.search_term
-    context['activity_desc'] = chosen_activity.activity_desc
-    context['places_term'] = chosen_activity.places_term
+    context['dog_id'] = chosen_dog.id
+    context['dog_name'] = chosen_dog.dog_name
+    context['search_term'] = chosen_dog.search_term
+    context['dog_desc'] = chosen_dog.dog_desc
     return JsonResponse(context)
 
 
@@ -95,7 +94,7 @@ def record_selection(request):
     no_string_list = [str(i) for i in no_string_list]
     no_string = ','.join(no_string_list)
     decision = True if req('outcome') == '1' else False
-    selection = models.UserSelection.objects.create(outcome=decision,suggested_activity_id=req('activity'),lat=req('lat'),lng=req('lng'),yes_list=yes_string,no_list=no_string)
+    selection = models.UserSelection.objects.create(outcome=decision,suggested_dog_id=req('dog'),lat=req('lat'),lng=req('lng'),yes_list=yes_string,no_list=no_string)
     return JsonResponse({'status':'OK'})
 
 # Database amend view
