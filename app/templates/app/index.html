@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link href='https://fonts.googleapis.com/css?family=Josefin Sans' rel='stylesheet' type='text/css'>
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<style type="text/css">
+	.slick-list {
+		height:100%;
+		width:100%;
+	}
+	.idunno-carousel {
+    	height: 100%;
+    	width: 100%;
+	}
+	.option-text {
+		font-size: 12em
+	}
+	h1 {
+		color: #ffffff;
+		text-align: center;
+		vertical-align: middle;
+		font-family: Arial;
+		font-weight: 900;
+		text-shadow: 0px 0px 50px #000;
+	}
+	html, body, #map {
+    	margin:0;
+   		padding:0;
+   		height: 100%;
+		font-family: 'Josefin Sans', sans-serif;
+	}
+	#overall {
+		height: 100%;
+	}
+	#progress-row {
+		height: 1%;
+	}
+	#progress {
+		width: 100%;
+	}
+	#image-row {
+		height: 65%;
+	}
+	#decider-row {
+		height: 25%;
+		padding: 5%;
+	}
+	#answer-row {
+		height: 100%;
+		font-size: 15em;
+		align-items: center;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+	#accept {
+		float: right;
+		height: 100%;
+	}
+	#deny {
+		float: left;
+		height: 100%;
+	}
+	.status-row {
+		height: 12%;
+		text-align: center;
+		margin-right: -25px;
+		margin-left: -25px;
+	}
+	#status-label {
+		border-radius: 0px;
+		height: 100%;
+		width: 100%;
+		font-size: 4em;
+		margin: 0;
+		padding: 0;
+		padding-top: 1%;
+		vertical-align: middle;
+	}
+	#suggest-row {
+		text-align: center;
+		margin: auto;
+	}
+	#suggestion-label {
+		font-size: 7em;
+	}
+	#suggestion-options {
+		height: 100%;
+		vertical-align: middle;
+		font-size: 15em;
+	}
+	#restart {
+		float: left;
+		height: 100%;
+	}
+	#confirm-suggestion {
+		float: right;
+		height: 100%;
+	}
+	#map {
+		width: 100%;
+	}
+	</style>
+	</head>
+	<body>
+	<div id="overall">
+		<div class="row" id="progress-row">
+			<progress id="progress" value="0" max="100">
+			</progress>
+		</div>
+		<div class="row" id="image-row">
+			<div class="idunno-carousel" id="swiper">
+				<div id="slab1">
+					<h1 class="option-text" id="1">
+					</h1>
+				</div>
+				<div id="slab2">
+					<h1 class="option-text" id="2">
+					</h1>
+				</div>
+				<div id="slab3">
+					<h1 class="option-text" id="3">
+					</h1>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="decider-row">
+			<div class="col-sm-offset-2 col-sm-8" id="answer-row">
+				<span class="glyphicon glyphicon-remove-circle" id="deny"></span>
+				<span class="glyphicon glyphicon-ok-circle" id="accept" ></span>
+			</div>
+		</div>
+		<div class="row status-row">
+            <h1 class="col-sm-12 label label-info" id="status-label">
+            </h1>
+        </div>
+		<div class="row" id="suggest-row">
+			<h1 id="suggestion-label">
+			</h1>
+			<div class="col-sm-offset-2 col-sm-8" id="suggestion-options">
+				<div class="glyphicon glyphicon-remove-circle" id="restart">
+				</div>
+				<div class="glyphicon glyphicon-ok-circle" id="confirm-suggestion">
+				</div>
+			</div>
+		</div>
+	    <div class="row col-sm-10 col-sm-offset-1" id="results-row" >
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h2>Suggestions</h2>
+					</div>
+					<div class="panel-body">
+	    					<ul id="search-list" class="list-group">
+	    					</ul>
+					</div>
+				</div>
+			</div>
+        </div>
+	<div class="row col-sm-10 col-sm-offset-1" id="nearby">
+                        <div class="panel-group">
+                                <div class="panel-default">
+                                        <div class="panel-heading">
+                                                <h2>
+                                                        <a data-toggle="collapse" href="#collapsenearby" id="nearby-click">Nearby</a>
+                                                </h2>
+                                        </div>
+                                        <div class="panel-collapse collapse" id="collapsenearby">
+                                                <div id="map">
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+        </div>
+		<div class="row col-sm-10 col-sm-offset-1" id="about">
+			<div class="panel-group">
+				<div class="panel-default">
+					<div class="panel-heading">
+						<h2>
+							<a data-toggle="collapse" href="#collapseabout">How does it work?</a>
+						</h2>
+					</div>
+					<div class="panel-collapse collapse" id="collapseabout">
+						<strong>Google for the indecisive</strong><br>iDunno uses the latest in *insert machine learning / data science buzzwords here* to help you avoid wasted hours sifting through events websites only to realise it is now too late to actually go out and do anything.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlynKEta2dtp3X2eJ82DSJnVC_5QySqck&libraries=places"></script>
+	<script>
+	$.mobile.autoInitializePage = false;
+    var activity_id = "";
+    var activity_suggestion = "";
+
+    var places_term = "";
+	var map;
+    var infowindow;
+	var service;
+	var loc;
+
+	var current_id = 1;
+	var question_id = 1;
+	var yes_id = 3;
+	var no_id = 2;
+
+	var counter = 0;
+
+	var image_urls = {};
+
+	var decisions = [];
+    var decisions_struct = [];
+    var no_list = [];
+    var yes_list = [];
+
+    var for_counter = 0;
+
+    {% for tag in question_tags %}
+        decisions_struct[for_counter] = {};
+        decisions_struct[for_counter]['tag_id'] = "{{ tag.id }}";
+        decisions_struct[for_counter]['tag_name'] = "{{ tag.tag_name }}";
+        decisions_struct[for_counter]['question_text'] = "{{ tag.question_text }}";;
+        decisions_struct[for_counter]['yes_or_no'] = 0;
+        for_counter++;
+    {% endfor %}
+
+    {% for k,v in image_url.items %}
+            image_urls["{{k}}"] = "{{v}}"; 
+    {% endfor %}
+
+    for_counter = 0;
+
+    for (var key in image_urls) {
+        for (var i = 0; i < 5; i++) {
+        	if (decisions_struct[i]["tag_id"].toString() == key.toString()) {
+				decisions_struct[i]["image_url"] = image_urls[key];
+                break;
+        	}
+		}
+    }
+
+	decisions[0] = decisions_struct[0]["question_text"];
+	decisions[1] = decisions_struct[1]["question_text"];
+	decisions[2] = decisions_struct[2]["question_text"];
+	decisions[3] = decisions_struct[3]["question_text"];
+	decisions[4] = decisions_struct[4]["question_text"];
+
+	decider = function(direction) {
+		counter++;
+		var new_prog = counter*20;
+		$("#progress").attr('value',new_prog); 
+		$("#status-label").removeClass('label-info');
+		if (direction=="right") {
+			$("#status-label").text("Yes");
+                        yes_list.push(decisions_struct[counter-1]['tag_id']);
+                        decisions_struct[counter-1]['yes_or_no'] = 1;
+			$("#status-label").addClass('label label-success');
+			switch(current_id) {
+				case 1:
+					question_id = 3;
+					yes_id = 2;
+					no_id = 1;
+					break;
+				case 2:
+					question_id = 1;
+					yes_id = 3;
+					no_id = 2;
+					break;
+				case 3:
+					question_id = 2;
+					yes_id = 1;
+					no_id = 3;
+					break;
+			}
+		} else if(direction == "left") {
+			$("#status-label").text("No");
+                        no_list.push(decisions_struct[counter-1]['tag_id']);
+                        decisions_struct[counter-1]['yes_or_no'] = 0;
+			$("#status-label").addClass('label label-danger');
+			switch(current_id) {
+				case 1:
+					question_id = 2;
+					yes_id = 1;
+					no_id = 3;
+					break;
+				case 2:
+					question_id = 3;
+					yes_id = 2;
+					no_id = 1;
+					break;
+				case 3:
+					question_id = 1;
+					yes_id = 3;
+					no_id = 2;
+					break;
+			}
+		}
+
+		current_id = question_id;
+		var question_string = "#" + question_id.toString();
+        var image_string = "#" + "slab" + question_id.toString();
+		$(question_string).animate({opacity:1},200);
+        var question_formatted = "Do you want to " + decisions[counter] + "?";
+		$(question_string).text(question_formatted);
+
+        if (counter != 5) {
+        	var url_string = 'url(' + decisions_struct[(counter).toString()]["image_url"] + ')';
+        	$("#swiper").css({"background-image": url_string});
+        }
+
+		$("#status-label").animate({opacity:1},500, function() {
+			$(this).animate({opacity:0},1000, function() {
+				$(this).removeClass('label-success');
+				$(this).removeClass('label-danger');
+			});
+		});
+
+		if (counter == 5) {
+			$("#swiper").animate({opacity:'0',height:'0px'},500);
+			$("#swiper").parent().animate({opacity:'0',height:'0px'},500);
+			$("#progress-row").animate({opacity:0, height:'0px'},500);
+			$("#decider-row").animate({opacity:0, height:'0px'},500);
+			$(".status-row").hide();
+			$("#suggest-row").show();
+			$("#suggest-row").animate({opacity:1},500);
+			$.get("http://idunno.io:80/api/get_activities",
+				{'no_list': no_list.toString(), 'yes_list': yes_list.toString()},
+				function(res) {
+					$("#suggestion-label").text("iDunno thinks you should " + res['activity_desc'] + ". Do you agree?");
+					activity_suggestion = res['search_term'];
+					activity_id = res['activity_id']
+					places_term = res['places_term'];
+				}
+			);
+			if (direction == 'right') {
+				$("#status-label").removeClass('label-success');
+			} else {
+				$("#status-label").removeClass('label-danger');
+			}
+			$("#swiper").hide();
+		}
+	}
+
+	$("#swiper").on("swipe", function(event, slick, direction) {
+		$(".option-text").animate({opacity:0},200).delay(200);
+		$(".status-row").show();
+		decider(direction);
+	});
+
+	$("#accept").on("click", function(event,slick) {
+		$(".option-text").animate({opacity:0},200).delay(200);
+		$(".status-row").show();
+		decider("right");
+	});
+
+	$("#deny").on("click", function(event,slick) {
+                $(".option-text").animate({opacity:0},200).delay(200);
+                $(".status-row").show();
+                decider("left");
+        });
+
+	$("#nearby-click").on("click", function() {
+		$("#map").css("height","800px");
+                $("#map").css("width","100%");
+		initMap(loc);
+
+                service = new google.maps.places.PlacesService(map);
+
+                map.setCenter(loc);
+
+                var request = {
+                        location: loc,
+                        radius: '1',
+                        query: places_term
+		};
+
+                var places = [];
+                var markers = [];
+                var place;
+                var marker;
+
+		service.textSearch(request, function callback(results, status) {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                for (var i = 0; i < results.length; i++) {
+                                        place = results[i];
+                                        places.push(place);
+                                        marker = new google.maps.Marker({
+                                                position: new google.maps.LatLng(place['geometry']['location']['lat'](),place['geometry']['location']['lng']()),
+                                                title: place['name'].toString(),
+                                                map: map
+                                        });
+                    google.maps.event.addListener(marker, 'click', function() {
+                                        infowindow.setContent(this.title);
+                        infowindow.open(map,this);
+                                        });
+                                        markers.push(marker);
+                                }
+                        }
+                });
+	});
+
+    function record_selection(choice) {
+		$.get("http://idunno.io:80/api/record_selection",{'lat':loc['lat'](),'lng':loc['lng'](),'activity':activity_id,'outcome':choice,'no_list':no_list.toString(),'yes_list':yes_list.toString()});
+	}
+
+	function restart() {
+		location.reload();
+        record_selection(0);
+	}
+
+	function choose_activity() {
+        $("#suggest-row").animate({opacity: '0', height: '0px'},500, function() {$(this).hide()});
+	$("#results-row").show();
+	$("#map").show();
+	$("#nearby").show();
+	$("#about").show();
+        record_selection(1);
+
+        var location_string = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + loc['lat']() + "," + loc['lng']() + "&key=" + "AIzaSyD4mssxcnomADdqyD4vDExAyDFaEO7bXRg";
+        var city = '';
+        var country = '';
+        $.get(location_string, function(data) {
+            for (var i = data['results'][0]['address_components'].length - 1; i >= 0; i--) {
+                if (data['results'][0]['address_components'][i]['types'].indexOf('country') >= 0) {
+                    country = data['results'][0]['address_components'][i]['long_name'];
+                }
+                if(data['results'][0]['address_components'][i]['types'].indexOf('postal_town') >=  0) {
+                    city += " " + data['results'][0]['address_components'][i]['long_name'];
+                    var search_string = "https://www.googleapis.com/customsearch/v1?q={" + city + "," + country + "," + activity_suggestion + "}&cx=" + "012308802730163756258:oyksixjkzug" + "&key=AIzaSyD4mssxcnomADdqyD4vDExAyDFaEO7bXRg"
+                    $.get(search_string,function(data) {
+                        for (var i = 0; i < data['items'].length; i++) {
+                            var id_string = "#" + i.toString() + "search";
+                            var $li = $("<li>",{id:id_string, class:"list-group-item"});
+                            $("#search-list").append($li);
+                            var $a = $("<a></a>",{href:data['items'][i]['link']});
+                            var t1 = $("<strong></strong>").text(data['items'][i]['title']);
+                            $a.append(t1);
+                            var t2 = $("<br>");
+                            var t3 = $("<a></a>",{href:data['items'][i]['link']}).text(data['items'][i]['link']);
+                            var t5 = $("<br>");
+                            var t4 = $("<span></span>").text(data['items'][i]['snippet']);
+                            $li.append($a,t2,t4);
+                        }
+                    });
+                }
+	    	}
+		});
+	}
+	
+  	function initMap(loc) {
+    	map = new google.maps.Map(document.getElementById('map'), {
+    	  	center: loc,
+      		zoom: 14
+    	});
+		infowindow = new google.maps.InfoWindow({
+    		content: ''
+  		});
+	}
+
+	$(document).ready(function() {
+		var pageWidth = $(window).width();
+		if (pageWidth > 1024) {
+			$("#overall").addClass("col-md-6 col-md-offset-3");
+			$("#accept").parent().css("font-size","10em");
+			$(".option-text").css("font-size","5em");
+			$("#decider-row").css("padding","1%");
+			$("#confirm-suggestion").parent().css("font-size","10em");
+			$("#suggestion-label").css("font-size","5em");
+
+		};
+                var url_string = 'url(' + decisions_struct[(counter).toString()]["image_url"] + ')';
+                $("#swiper").css({"background-image":url_string,"background-repeat": "no-repeat", "background-size": "cover","filter": "grayscale(10%)","-webkit-filter":"blur(10px)","-webkit-filter":"grayscale(0.1)","-webkit-background-size":"cover","-moz-background-size":"cover","-o-background-size":"cover","background-position": "center"});
+		$("#suggest-row").hide();
+		$("#nearby").hide();
+		$("#about").hide();
+		var slickOpts = {
+    		slidesToShow: 1,
+    		dots: false,
+    		prevArrow: '#accept',
+    		nextArrow: '#deny',
+    		centerMode: true
+		};
+		$("#results-row").hide();
+		$('.idunno-carousel').slick(slickOpts);
+		$("#1").text("Do you want to " + decisions[0] + "?");
+		$("#status-label").text("...left for no, right for yes...");
+		$("#status-label").animate({opacity:1},500);
+		$("#progress").animate({opacity:1},500);
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+					loc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			});
+		}	
+		else {	
+			loc = new google.maps.LatLng(50,5);
+		}
+		$("#map").hide();
+		$("#confirm-suggestion").on("click", choose_activity);
+		$("#restart").on("click", restart);
+	});
+	</script>
+	</body>
+</html>
