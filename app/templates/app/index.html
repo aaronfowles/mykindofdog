@@ -306,7 +306,7 @@
 		var question_string = "#" + question_id.toString();
         var image_string = "#" + "slab" + question_id.toString();
 		$(question_string).animate({opacity:1},200);
-        var question_formatted = "Do you want to " + decisions[counter] + "?";
+        var question_formatted = "Do you want " + decisions[counter] + "?";
 		$(question_string).text(question_formatted);
 
         if (counter != 5) {
@@ -329,10 +329,10 @@
 			$(".status-row").hide();
 			$("#suggest-row").show();
 			$("#suggest-row").animate({opacity:1},500);
-			$.get("http://idunno.io:8000/api/get_activities",
+			$.get("http://idunno.io:8000/api/get_dogs",
 				{'no_list': no_list.toString(), 'yes_list': yes_list.toString()},
 				function(res) {
-					$("#suggestion-label").text("iDunno thinks you should " + res['activity_desc'] + ". Do you agree?");
+					$("#suggestion-label").text("iDunno thinks you should get a " + res['dog_desc'] + ". Do you agree?");
 					activity_suggestion = res['search_term'];
 					activity_id = res['activity_id']
 					places_term = res['places_term'];
