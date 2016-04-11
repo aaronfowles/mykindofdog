@@ -306,7 +306,7 @@
 		var question_string = "#" + question_id.toString();
         var image_string = "#" + "slab" + question_id.toString();
 		$(question_string).animate({opacity:1},200);
-        var question_formatted = "Do you want " + decisions[counter] + "?";
+        var question_formatted = "Do you " + decisions[counter] + "?";
 		$(question_string).text(question_formatted);
 
         if (counter != 5) {
@@ -488,7 +488,7 @@
 		};
 		$("#results-row").hide();
 		$('.idunno-carousel').slick(slickOpts);
-		$("#1").text("Do you want to " + decisions[0] + "?");
+		$("#1").text("Do you " + decisions[0] + "?");
 		$("#status-label").text("...left for no, right for yes...");
 		$("#status-label").animate({opacity:1},500);
 		$("#progress").animate({opacity:1},500);

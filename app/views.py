@@ -20,7 +20,7 @@ def index(request):
     context['image_url'] = {}
     for i in range(0,5):
         context['question_tags'].append(all_tags[rand_selection[i]])
-        tags = [str(all_tags[rand_selection[i]])]
+        tags = [str(all_tags[rand_selection[i]].tag_search_terms)]
         tag_string = ','.join(tags)
         payload = {'api_key': '63c1470d6730c8c27c06176060489644','tags':tag_string,'tag_mode':'any','media':'photos','format':'json','method':'flickr.photos.search'}
         res = requests.get('https://api.flickr.com/services/rest/?',params=payload)
