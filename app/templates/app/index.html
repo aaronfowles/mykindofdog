@@ -3,60 +3,55 @@
 	<head>
 	<script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<style type="text/css">
-	html, body {
-    	margin:0;
-   		padding:0;
-   		height: 100%;
-		font-family: 'Josefin Sans', sans-serif;
-	}
 	#overall {
 		height: 100%;
+		width: 100%;
 	}
 	#header-row {
-	
+		height: 8%;
 	}
 	#progress-row {
-		height: 1%;
+		height: 8%;
 	}
 	#question-row {
-		height: 65%;
+		height: 20%;
 	}
 	#selection-row {
-		height: 25%;
-		padding: 5%;
+		height: 50%;
 	}
 	#next-row {
-		height: 100%;
-		font-size: 15em;
-		align-items: center;
-		top: 50%;
-		-webkit-transform: translateY(-50%);
-		-o-transform: translateY(-50%);
-		transform: translateY(-50%);
+		height: 14%;
 	}
 	</style>
 	</head>
 	<body>
-	<div id="overall">
+	<div class="col-md-12" id="overall">
 		<div class="row" id="header-row">
+			<h2>My Kind of Dog
+			</h2>
 		</div>
 		<div class="row" id="progress-row">
+			<h5>Question 1 of 2
+			</h5>
 		</div>
 		<div class="row" id="question-row">
+			<h1>Which size of dog would you prefer?
+			</h1>
 		</div>
 		<div class="row" id="selection-row">
+			<div>Pics of pooches
+			</div>
 		</div>
 		<div class="row" id="next-row">
+			<h4>Next
+			</h4>
         	</div>
         </div>
 	<script>
 	$.mobile.autoInitializePage = false;
-	$(document).ready(function() {
-	}
 	</script>
 	</body>
 </html>
