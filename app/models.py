@@ -7,6 +7,13 @@ class Dog(models.Model):
     dog_name = models.CharField(max_length=50)
     search_term = models.CharField(max_length=50)
     dog_desc = models.CharField(max_length=50)
+    group = models.CharField(max_length=50)
+    size = models.CharField(max_length=50)
+    weight = models.CharField(max_length=50)
+    grooming = models.CharField(max_length=50)
+    exercise = models.CharField(max_length=50)
+    locality = models.CharField(max_length=50)
+    lifespan = models.CharField(max_length=50)
 
     def __str__(self):
         return self.dog_name 
@@ -15,6 +22,7 @@ class Dog(models.Model):
 class Tag(models.Model):
     tag_name = models.CharField(max_length=50)
     question_text = models.CharField(max_length=50)
+    tag_search_terms = models.CharField(max_length=50)
 
     def __str__(self):
         return self.tag_name
