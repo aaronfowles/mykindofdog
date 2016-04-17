@@ -9,31 +9,30 @@ import json
 # Create your views here.
 def index(request):
     context = {}
-    # Get all known tags
-    # Select 5 for questions
-    all_tags = list(models.Tag.objects.all())
-    # Select 5 for questions
-    rand_selection = []
-    for i in range(0,5):
-        rand_selection.append(randint(0,len(all_tags)-1))
-    context['question_tags'] = []
-    context['image_url'] = {}
-    for i in range(0,5):
-        context['question_tags'].append(all_tags[rand_selection[i]])
-        tags = [str(all_tags[rand_selection[i]].tag_search_terms)]
-        tag_string = ','.join(tags)
-        payload = {'api_key': '63c1470d6730c8c27c06176060489644','tags':tag_string,'tag_mode':'any','media':'photos','format':'json','method':'flickr.photos.search'}
-        res = requests.get('https://api.flickr.com/services/rest/?',params=payload)
-        photo = res.text
-        photo = photo[photo.index('{'):len(photo)-1]
-        photo = json.loads(photo)
-        photo = photo["photos"]["photo"][randint(0,len(photo["photos"]["photo"])-1)]
-        farm_id = str(photo["farm"])
-        server_id = str(photo["server"])
-        id = str(photo["id"])
-        secret = str(photo["secret"])
-        image_url = "https://farm" + farm_id + ".staticflickr.com/" + server_id + "/" + id + "_" + secret + ".jpg"
-        context["image_url"][str(all_tags[rand_selection[i]].id)] = image_url 
+    context['question_obj'] = {}
+    # size
+    context['question_obj']['size'] = {}
+    context['question_obj']['size']['question_no'] = 1
+    context['question_obj']['size']['question_attr'] = 'size'
+    context['question_obj']['size']['question_text'] = 'Which size of dog do you prefer?'
+    context['question_obj']['size']['img_urls'] = {}
+    context['question_obj']['size']['img_urls']['small_off'] = ''
+    context['question_obj']['size']['img_urls']['small_on'] = ''
+    context['question_obj']['size']['img_urls']['medium_off'] = ''
+    context['question_obj']['size']['img_urls']['medium_on'] = ''
+    context['question_obj']['size']['img_urls']['large_off'] = ''
+    context['question_obj']['size']['img_urls']['large_on'] = ''
+    context['question_obj']['size']['img_urls']['giant_off'] = ''
+    context['question_obj']['size']['img_urls']['giant_on'] = ''
+    # locality
+    context['question_obj']['locality'] = {}
+    context['question_obj']['locality']['question_no'] = 2
+    context['question_obj']['locality']['question_attr'] = 'locality'
+    context['question_obj']['locality']['question_text'] = 'Where do you live?'
+    context['question_obj']['size']['img_urls']['city_off'] = ''
+    context['question_obj']['size']['img_urls']['city_on'] = ''
+    context['question_obj']['size']['img_urls']['country_off'] = ''
+    context['question_obj']['size']['img_urls']['country_on'] = ''
     return render(request, 'app/index.html', context)
 
 def get_dogs(request):
