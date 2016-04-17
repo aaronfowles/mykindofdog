@@ -47,11 +47,11 @@
 		<div class="row" id="header-row">
 		</div>
 		<div class="row" id="progress-row">
-			<h5>
+			<h5 id="progress-string">
 			</h5>
 		</div>
 		<div class="row" id="question-row">
-			<h1>We're here to find the right dog for you!
+			<h1 id="question-string">We're here to find the right dog for you!
 			</h1>
 		</div>
 		<div class="row"  id="selection-row">
@@ -61,19 +61,105 @@
         	</div>
         </div>
 	<script>
-	var question_obj = {};
-	var response_obj = {};
+	var question_object = {};
+	var response_object = {};
+	var next_btn_src = "";
 	// Fill question_obj with properties here
-	
+	question_object["size"] = {};
+	question_object["size"]["question_no"] = 1;
+	question_object["size"]["question_attr"] = "size";
+	question_object["size"]["question_text"] = "Which size of dog do you prefer?";
+	question_object["size"]["small_off"] = "{{question_obj.size.img_urls.small_off}}";
+	question_object["size"]["small_on"] = "{{question_obj.size.img_urls.small_on}}";
+	question_object["size"]["medium_off"] = "{{question_obj.size.img_urls.medium_off}}";
+	question_object["size"]["medium_on"] = "{{question_obj.size.img_urls.medium_on}}";
+	question_object["size"]["large_off"] = "{{question_obj.size.img_urls.large_off}}";
+	question_object["size"]["large_on"] = "{{question_obj.size.img_urls.large_on}}";
+	question_object["size"]["giant_off"] = "{{question_obj.size.img_urls.giant_off}}";
+ 	question_object["size"]["giant_on"] = "{{question_obj.size.img_urls.giant_on}}";
+
+	question_object["locality"] = {};
+	question_object["locality"]["question_no"] = 2;
+        question_object["locality"]["question_attr"] = "locality";
+        question_object["locality"]["question_text"] = "Where do you live?";
+        question_object["locality"]["city_off"] = "{{question_obj.locality.img_urls.city_off}}";
+	question_object["locality"]["city_on"] = "{{question_obj.locality.img_urls.city_on}}";
+	question_object["locality"]["country_off"] = "{{question_obj.locality.img_urls.country_off}}";
+	question_object["locality"]["country_on"] = "{{question_obj.locality.img_urls.country_on}}";
+
 	$(document).ready(function() {
 		$("#header-row").prepend('<img id="head_img" src={% static 'img/global/logo.png' %} />');
 		$("#selection-row").prepend('<img id="gif_img" src={% static 'img/dogs-animated.gif' %} />');
 		$("#next-button").prepend('<img id="next_img" src={% static 'img/global/get-started-btn.png' %} />');
+		next_btn_src = "{% static 'img/global/next-btn.png' %}";
+		$("#next-button").on("click",nextQuestion);
 	});
 	question_counter = 0;
+	question_order = {};
+	question_order["1"] = "size";
+	question_order["2"] = "locality";	
         function nextQuestion() {
 		question_counter++;
-		// Fill divs with question content here
+		var question_attr = question_order[question_counter.toString()];
+		if (question_attr == "size") {
+			$("#gif_img").remove();
+			var progress_update = "Question " + question_counter.toString() + " of 2";
+			$("#progress-string").text(progress_update);
+			$("#question-string").text(question_object[question_attr]["question_text"]);
+			var static_string = "http://139.59.172.139/static";
+			var small_str_off = static_string + question_object["size"]["small_off"];
+			var small_str_on = static_string + question_object["size"]["small_on"];
+			size_img = $('<div id="size_img"><div id="row-one" class="row"><img id="sml-btn" /></div></div>');
+			$("#selection-row").append(size_img);
+			$("#sml-btn").attr("src",small_str_off);
+			$("#sml-btn").on("click",function() {
+				$("#sml-btn").attr("src",small_str_on);
+			});
+			var med_str_off = static_string + question_object["size"]["medium_off"];
+                        var med_str_on = static_string + question_object["size"]["medium_on"];
+                        size_img = $('<img id="med-btn" />');
+                        $("#row-one").append(size_img);
+                        $("#med-btn").attr("src",med_str_off);
+                        $("#med-btn").on("click",function() {
+                                $("#med-btn").attr("src",med_str_on);
+                        });
+			var large_str_off = static_string + question_object["size"]["large_off"];
+                        var large_str_on = static_string + question_object["size"]["large_on"];
+                        size_img = $('<div id="row-two" class="row"><img id="lrg-btn" /></div>');
+                        $("#size_img").append(size_img);
+                        $("#lrg-btn").attr("src",large_str_off);
+                        $("#lrg-btn").on("click",function() {
+                                $("#lrg-btn").attr("src",large_str_on);
+                        });
+			var giant_str_off = static_string + question_object["size"]["giant_off"];
+                        var giant_str_on = static_string + question_object["size"]["giant_on"];
+                        size_img = $('<img id="gnt-btn" />');
+                        $("#row-two").append(size_img);
+                        $("#gnt-btn").attr("src",giant_str_off);
+                        $("#gnt-btn").on("click",function() {
+                                $("#gnt-btn").attr("src",giant_str_on);
+                        });
+
+
+			$("#next_img").attr("src",next_btn_src);
+		}
+
+		if (question_attr == "locality") {
+                        $("#gif_img").remove();
+                        var progress_update = "Question " + question_counter.toString() + " of 2";
+                        $("#progress-string").text(progress_update);
+                        $("#question-string").text(question_object[question_attr]["question_text"]);
+                        var static_string = "http://139.59.172.139/static";
+                        var city_off = static_string + question_object["locality"]["city_off"];
+                        var city_on = static_string + question_object["locality"]["city_on"];
+                        locality_img = $('<div id="size_img"><div class="row"><img id="city-btn" /></div></div>');
+                        $("#selection-row").append(locality_img);
+                        $("#city-btn").attr("src",city_off);
+                        $("#city-btn").on("click",function() {
+                                $("#city-btn").attr("src",city_on);
+                        });
+                        $("#next_img").attr("src",next_btn_src);
+                }
 	};
 	</script>
 	</body>

@@ -16,23 +16,24 @@ def index(request):
     context['question_obj']['size']['question_attr'] = 'size'
     context['question_obj']['size']['question_text'] = 'Which size of dog do you prefer?'
     context['question_obj']['size']['img_urls'] = {}
-    context['question_obj']['size']['img_urls']['small_off'] = ''
-    context['question_obj']['size']['img_urls']['small_on'] = ''
-    context['question_obj']['size']['img_urls']['medium_off'] = ''
-    context['question_obj']['size']['img_urls']['medium_on'] = ''
-    context['question_obj']['size']['img_urls']['large_off'] = ''
-    context['question_obj']['size']['img_urls']['large_on'] = ''
-    context['question_obj']['size']['img_urls']['giant_off'] = ''
-    context['question_obj']['size']['img_urls']['giant_on'] = ''
+    context['question_obj']['size']['img_urls']['small_off'] = '/img/size-of-dog-btns/sml-btn.svg'
+    context['question_obj']['size']['img_urls']['small_on'] = '/img/size-of-dog-btns/sml-btn-down.svg'
+    context['question_obj']['size']['img_urls']['medium_off'] = '/img/size-of-dog-btns/med-btn.svg'
+    context['question_obj']['size']['img_urls']['medium_on'] = '/img/size-of-dog-btns/med-btn-down.svg'
+    context['question_obj']['size']['img_urls']['large_off'] = '/img/size-of-dog-btns/lrg-btn.svg'
+    context['question_obj']['size']['img_urls']['large_on'] = '/img/size-of-dog-btns/lrg-btn-down.svg'
+    context['question_obj']['size']['img_urls']['giant_off'] = '/img/size-of-dog-btns/gnt-btn.svg'
+    context['question_obj']['size']['img_urls']['giant_on'] = '/img/size-of-dog-btns/gnt-btn-down.svg'
     # locality
     context['question_obj']['locality'] = {}
     context['question_obj']['locality']['question_no'] = 2
     context['question_obj']['locality']['question_attr'] = 'locality'
     context['question_obj']['locality']['question_text'] = 'Where do you live?'
-    context['question_obj']['size']['img_urls']['city_off'] = ''
-    context['question_obj']['size']['img_urls']['city_on'] = ''
-    context['question_obj']['size']['img_urls']['country_off'] = ''
-    context['question_obj']['size']['img_urls']['country_on'] = ''
+    context['question_obj']['locality']['img_urls'] = {}
+    context['question_obj']['locality']['img_urls']['city_off'] = ''
+    context['question_obj']['locality']['img_urls']['city_on'] = ''
+    context['question_obj']['locality']['img_urls']['country_off'] = ''
+    context['question_obj']['locality']['img_urls']['country_on'] = ''
     return render(request, 'app/index.html', context)
 
 def get_dogs(request):
