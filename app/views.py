@@ -39,46 +39,18 @@ def index(request):
 def get_dogs(request):
     context = {}
     #get no list from request
-    no_list = request.GET.get("no_list","")
-    yes_list = request.GET.get("yes_list","")
+    response_list = request.GET['size[small]']
 
-    no_list = no_list.split(',')
-    yes_list = yes_list.split(',')
-    if no_list[0] == '':
-        no_list = [1,2]
-    if yes_list[0] == '':
-        yes_list = [3,4]
+    size_small = response_list
+    print(response_list)
 
-    all_dog_tags = models.DogTag.objects.all()
-    dogs_to_exclude = all_dog_tags.filter(tag_id__in=no_list)
-    dog_ids_to_exclude = []
-    for dog in dogs_to_exclude:
-        dog_ids_to_exclude.append(dog.dog_id.id)
+    all_dogs = models.Dog.objects.all()
 
-    dogs_to_prefer = models.DogTag.objects.filter(tag_id__in=yes_list)
-    dog_ids_to_prefer = []
-    for dog in dogs_to_prefer:
-        dog_ids_to_prefer.append(dog.dog_id.id)
+    test_dog = all_dogs[0]
 
-    dog_ids_to_remove = set(dog_ids_to_prefer).intersection(dog_ids_to_exclude)
-    dog_ids_to_select = [i for i in dog_ids_to_prefer if i not in dog_ids_to_remove]
-    chosen_dog = None
-    if (len(dog_ids_to_select) == 0):
-        chosen_dog = models.Dog.objects.exclude(id__in=dog_ids_to_exclude)[0]
-    elif (len(dog_ids_to_select) == 1):
-        chosen_dog = models.Dog.objects.filter(id__in=dog_ids_to_select)[0]
-    else:
-        a = models.DogTag.objects.filter(dog_id__in=dog_ids_to_select)
-        a2 = a.filter(tag_id__in=yes_list)
-        b = a2.values('dog_id').annotate(total=Count('dog_id')).order_by('-total')
-        chosen_dog = models.Dog.objects.get(id=b[0]['dog_id'])
-    if (chosen_dog == None):
-        chosen_dog.dog_desc = "Hmmm, iDunno doesn't know..."
-
-    context['dog_id'] = chosen_dog.id
-    context['dog_name'] = chosen_dog.dog_name
-    context['search_term'] = chosen_dog.search_term
-    context['dog_desc'] = chosen_dog.dog_desc
+    context['dog_id'] = test_dog.id
+    context['dog_name'] = test_dog.dog_name
+    context['is_small_on'] = size_small
     return JsonResponse(context)
 
 

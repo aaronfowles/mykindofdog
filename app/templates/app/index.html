@@ -134,6 +134,7 @@
 		$("#next-button").on("click",nextQuestion);
 	});
 	question_counter = 0;
+	question_max = 2;
 	question_order = {};
 	question_order["1"] = "size";
 	response_object["size"] = {};
@@ -147,9 +148,9 @@
 	response_object["locality"]["country"] = 0;	
         function nextQuestion() {
 		question_counter++;
+		$("#selection-row").empty();
 		var question_attr = question_order[question_counter.toString()];
 		if (question_attr == "size") {
-			$("#gif_img").remove();
 			var progress_update = "Question " + question_counter.toString() + " of 2";
 			$("#progress-string").text(progress_update);
 			$("#question-string").text(question_object[question_attr]["question_text"]);
@@ -231,6 +232,17 @@
                         });
                         $("#next_img").attr("src",next_btn_src);
                 }
+
+		if (question_counter > question_max) {
+			$.ajax({url:"http://139.59.172.139/api/get_dogs",
+				type:"GET",
+				data: response_object,
+				complete: function(res) {
+					// Display results
+				}
+			});
+			// Message explaining results are being fetched
+		}
 	};
 	</script>
 	</body>
