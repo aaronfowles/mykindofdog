@@ -131,7 +131,7 @@
 		$("#selection-row").prepend('<img id="gif_img" src={% static 'img/dogs-animated.gif' %} />');
 		$("#next-button").prepend('<img id="next_img" src={% static 'img/global/get-started-btn.png' %} />');
 		next_btn_src = "{% static 'img/global/next-btn.png' %}";
-		$("#next-button").on("click",nextQuestion);
+		$("#next_img").on("click",nextQuestion);
 	});
 	question_counter = 0;
 	question_max = 2;
@@ -234,11 +234,19 @@
                 }
 
 		if (question_counter > question_max) {
+			$("#progress-string").text("");
+			$("#question-string").text("Here are your suggestions");
 			$.ajax({url:"http://139.59.172.139/api/get_dogs",
 				type:"GET",
 				data: response_object,
-				complete: function(res) {
-					// Display results
+				dataType: 'json',
+				success: function(res) {
+					var response = res;
+					var trHTML = '';
+        				for (dog in response['dogs']) {
+            					trHTML += '<tr><td>' + response['dogs'][dog].dog_name + '</td><td>' + response['dogs'][dog].size +  '</td><td>' + response['dogs'][dog].locality + '</td></tr>';
+					}
+        				$('#selection-row').append(trHTML);
 				}
 			});
 			// Message explaining results are being fetched

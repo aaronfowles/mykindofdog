@@ -39,18 +39,44 @@ def index(request):
 def get_dogs(request):
     context = {}
     #get no list from request
-    response_list = request.GET['size[small]']
+    size_small = int(request.GET['size[small]'])
+    size_medium = int(request.GET['size[medium]'])
+    size_large = int(request.GET['size[large]'])
+    size_giant = int(request.GET['size[giant]'])
 
-    size_small = response_list
-    print(response_list)
+    locality_city = int(request.GET['locality[city]'])
+    locality_country = int(request.GET['locality[country]'])
 
     all_dogs = models.Dog.objects.all()
 
-    test_dog = all_dogs[0]
+    size_dogs = all_dogs
+    # filter for size
+    if (size_small == 0):
+        size_dogs = size_dogs.exclude(size='Small')
+    if (size_medium == 0):
+        size_dogs = size_dogs.exclude(size='Medium')
+    if (size_large == 0):
+        size_dogs = size_dogs.exclude(size='Large')
+    if (size_giant == 0):
+        size_giant = size_dogs.exclude(size='Giant')
 
-    context['dog_id'] = test_dog.id
-    context['dog_name'] = test_dog.dog_name
-    context['is_small_on'] = size_small
+    # filter for locality
+    locality_dogs = size_dogs
+    if (locality_city == 1):
+        locality_dogs = locality_dogs.filter(locality='Town or Country')
+    if (locality_country == 1):
+        locality_dogs = locality_dogs.filter(locality='Country')
+
+    result_dogs = locality_dogs
+
+    context['dogs'] = []
+    for dog in result_dogs:
+        c = {}
+        c['dog_id'] = str(dog.id)
+        c['dog_name'] = str(dog.dog_name)
+        c['size'] = str(dog.size)
+        c['locality'] = str(dog.locality)
+        context['dogs'].append(c)
     return JsonResponse(context)
 
 
