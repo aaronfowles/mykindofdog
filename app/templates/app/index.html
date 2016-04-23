@@ -136,7 +136,15 @@
 	question_counter = 0;
 	question_order = {};
 	question_order["1"] = "size";
-	question_order["2"] = "locality";	
+	response_object["size"] = {};
+	response_object["size"]["small"] = 0;
+	response_object["size"]["medium"] = 0;
+	response_object["size"]["large"] = 0;
+	response_object["size"]["giant"] = 0;
+	question_order["2"] = "locality";
+	response_object["locality"] = {};
+	response_object["locality"]["city"] = 0;
+	response_object["locality"]["country"] = 0;	
         function nextQuestion() {
 		question_counter++;
 		var question_attr = question_order[question_counter.toString()];
@@ -152,7 +160,13 @@
 			$("#selection-row").append(size_img);
 			$("#sml-btn").attr("src",small_str_off);
 			$("#sml-btn").on("click",function() {
-				$("#sml-btn").attr("src",small_str_on);
+				if ($("#sml-btn").attr("src").toString() == small_str_off) {
+					$("#sml-btn").attr("src",small_str_on);
+					response_object["size"]["small"] = 1;
+				} else {
+					$("#sml-btn").attr("src",small_str_off);
+					response_object["size"]["small"] = 0;
+				}
 			});
 			var med_str_off = static_string + question_object["size"]["medium_off"];
                         var med_str_on = static_string + question_object["size"]["medium_on"];
@@ -160,7 +174,13 @@
                         $("#row-one").append(size_img);
                         $("#med-btn").attr("src",med_str_off);
                         $("#med-btn").on("click",function() {
-                                $("#med-btn").attr("src",med_str_on);
+                                if ($("#med-btn").attr("src").toString() == med_str_off) {
+                                        $("#med-btn").attr("src",med_str_on);
+                                        response_object["size"]["medium"] = 1;
+                                } else {
+                                        $("#med-btn").attr("src",med_str_off);
+                                        response_object["size"]["medium"] = 0;
+                                }
                         });
 			var large_str_off = static_string + question_object["size"]["large_off"];
                         var large_str_on = static_string + question_object["size"]["large_on"];
@@ -168,7 +188,13 @@
                         $("#size_img").append(size_img);
                         $("#lrg-btn").attr("src",large_str_off);
                         $("#lrg-btn").on("click",function() {
-                                $("#lrg-btn").attr("src",large_str_on);
+                                if ($("#lrg-btn").attr("src").toString() == large_str_off) {
+                                        $("#lrg-btn").attr("src",large_str_on);
+                                        response_object["size"]["large"] = 1;
+                                } else {
+                                        $("#lrg-btn").attr("src",large_str_off);
+                                        response_object["size"]["large"] = 0;
+                                }
                         });
 			var giant_str_off = static_string + question_object["size"]["giant_off"];
                         var giant_str_on = static_string + question_object["size"]["giant_on"];
@@ -176,7 +202,13 @@
                         $("#row-two").append(size_img);
                         $("#gnt-btn").attr("src",giant_str_off);
                         $("#gnt-btn").on("click",function() {
-                                $("#gnt-btn").attr("src",giant_str_on);
+                                if ($("#gnt-btn").attr("src").toString() == giant_str_off) {
+                                        $("#gnt-btn").attr("src",giant_str_on);
+                                        response_object["size"]["giant"] = 1;
+                                } else {
+                                        $("#gnt-btn").attr("src",giant_str_off);
+                                        response_object["size"]["giant"] = 0;
+                                }
                         });
 
 
