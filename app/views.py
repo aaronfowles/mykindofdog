@@ -65,7 +65,7 @@ def get_dogs(request):
     if (locality_city == 1):
         locality_dogs = locality_dogs.exclude(locality='Country')
     if (locality_country == 1):
-        locality_dogs = locality_dogs.filter(locality='Country')
+        locality_dogs = locality_dogs
 
     result_dogs = locality_dogs
 
