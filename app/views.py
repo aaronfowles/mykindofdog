@@ -16,24 +16,24 @@ def index(request):
     context['question_obj']['size']['question_attr'] = 'size'
     context['question_obj']['size']['question_text'] = 'Which size of dog do you prefer?'
     context['question_obj']['size']['img_urls'] = {}
-    context['question_obj']['size']['img_urls']['small_off'] = '/img/size-of-dog-btns/sml-btn.svg'
-    context['question_obj']['size']['img_urls']['small_on'] = '/img/size-of-dog-btns/sml-btn-down.svg'
-    context['question_obj']['size']['img_urls']['medium_off'] = '/img/size-of-dog-btns/med-btn.svg'
-    context['question_obj']['size']['img_urls']['medium_on'] = '/img/size-of-dog-btns/med-btn-down.svg'
-    context['question_obj']['size']['img_urls']['large_off'] = '/img/size-of-dog-btns/lrg-btn.svg'
-    context['question_obj']['size']['img_urls']['large_on'] = '/img/size-of-dog-btns/lrg-btn-down.svg'
-    context['question_obj']['size']['img_urls']['giant_off'] = '/img/size-of-dog-btns/gnt-btn.svg'
-    context['question_obj']['size']['img_urls']['giant_on'] = '/img/size-of-dog-btns/gnt-btn-down.svg'
+    context['question_obj']['size']['img_urls']['small_off'] = '/img/size-of-dog-btns/sml-btn.png'
+    context['question_obj']['size']['img_urls']['small_on'] = '/img/size-of-dog-btns/sml-btn-down.png'
+    context['question_obj']['size']['img_urls']['medium_off'] = '/img/size-of-dog-btns/med-btn.png'
+    context['question_obj']['size']['img_urls']['medium_on'] = '/img/size-of-dog-btns/med-btn-down.png'
+    context['question_obj']['size']['img_urls']['large_off'] = '/img/size-of-dog-btns/lrg-btn.png'
+    context['question_obj']['size']['img_urls']['large_on'] = '/img/size-of-dog-btns/lrg-btn-down.png'
+    context['question_obj']['size']['img_urls']['giant_off'] = '/img/size-of-dog-btns/gnt-btn.png'
+    context['question_obj']['size']['img_urls']['giant_on'] = '/img/size-of-dog-btns/gnt-btn-down.png'
     # locality
     context['question_obj']['locality'] = {}
     context['question_obj']['locality']['question_no'] = 2
     context['question_obj']['locality']['question_attr'] = 'locality'
     context['question_obj']['locality']['question_text'] = 'Where do you live?'
     context['question_obj']['locality']['img_urls'] = {}
-    context['question_obj']['locality']['img_urls']['city_off'] = ''
-    context['question_obj']['locality']['img_urls']['city_on'] = ''
-    context['question_obj']['locality']['img_urls']['country_off'] = ''
-    context['question_obj']['locality']['img_urls']['country_on'] = ''
+    context['question_obj']['locality']['img_urls']['city_off'] = '/img/living-btns/city-btn.png'
+    context['question_obj']['locality']['img_urls']['city_on'] = '/img/living-btns/city-btn-down.png'
+    context['question_obj']['locality']['img_urls']['country_off'] = '/img/living-btns/country-btn.png'
+    context['question_obj']['locality']['img_urls']['country_on'] = '/img/living-btns/country-btn-down.png'
     return render(request, 'app/index.html', context)
 
 def get_dogs(request):
@@ -58,12 +58,12 @@ def get_dogs(request):
     if (size_large == 0):
         size_dogs = size_dogs.exclude(size='Large')
     if (size_giant == 0):
-        size_giant = size_dogs.exclude(size='Giant')
+        size_dogs = size_dogs.exclude(size='Giant')
 
     # filter for locality
     locality_dogs = size_dogs
     if (locality_city == 1):
-        locality_dogs = locality_dogs.filter(locality='Town or Country')
+        locality_dogs = locality_dogs.exclude(locality='Country')
     if (locality_country == 1):
         locality_dogs = locality_dogs.filter(locality='Country')
 

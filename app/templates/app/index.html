@@ -103,6 +103,7 @@
 	var question_object = {};
 	var response_object = {};
 	var next_btn_src = "";
+	var start_again_btn_src = "";
 	// Fill question_obj with properties here
 	question_object["size"] = {};
 	question_object["size"]["question_no"] = 1;
@@ -131,6 +132,7 @@
 		$("#selection-row").prepend('<img id="gif_img" src={% static 'img/dogs-animated.gif' %} />');
 		$("#next-button").prepend('<img id="next_img" src={% static 'img/global/get-started-btn.png' %} />');
 		next_btn_src = "{% static 'img/global/next-btn.png' %}";
+		start_again_btn_src = "{% static 'img/global/start-again-btn.png' %}";
 		$("#next_img").on("click",nextQuestion);
 	});
 	question_counter = 0;
@@ -154,7 +156,7 @@
 			var progress_update = "Question " + question_counter.toString() + " of 2";
 			$("#progress-string").text(progress_update);
 			$("#question-string").text(question_object[question_attr]["question_text"]);
-			var static_string = "http://139.59.172.139/static";
+			var static_string = "http://mykindofdog.com/static";
 			var small_str_off = static_string + question_object["size"]["small_off"];
 			var small_str_on = static_string + question_object["size"]["small_on"];
 			size_img = $('<div id="size_img"><div id="row-one" class="row"><img id="sml-btn" /></div></div>');
@@ -221,14 +223,34 @@
                         var progress_update = "Question " + question_counter.toString() + " of 2";
                         $("#progress-string").text(progress_update);
                         $("#question-string").text(question_object[question_attr]["question_text"]);
-                        var static_string = "http://139.59.172.139/static";
+                        var static_string = "http://mykindofdog.com/static";
                         var city_off = static_string + question_object["locality"]["city_off"];
                         var city_on = static_string + question_object["locality"]["city_on"];
-                        locality_img = $('<div id="size_img"><div class="row"><img id="city-btn" /></div></div>');
+                        locality_img = $('<div id="locality_img"><div id="row-one" class="row"><img id="city-btn" /></div></div>');
                         $("#selection-row").append(locality_img);
                         $("#city-btn").attr("src",city_off);
                         $("#city-btn").on("click",function() {
-                                $("#city-btn").attr("src",city_on);
+                                if ($("#city-btn").attr("src").toString() == city_off) {
+                                        $("#city-btn").attr("src",city_on);
+                                        response_object["locality"]["city"] = 1;
+                                } else {
+                                        $("#city-btn").attr("src",city_off);
+                                        response_object["locality"]["city"] = 0;
+                                }
+                        });
+			var country_off = static_string + question_object["locality"]["country_off"];
+                        var country_on = static_string + question_object["locality"]["country_on"];
+			locality_img = $('<div id="row-two" class="row"><img id="country-btn" /></div>');
+			$("#locality_img").append(locality_img);
+                        $("#country-btn").attr("src",country_off);
+                        $("#country-btn").on("click",function() {
+                                if ($("#country-btn").attr("src").toString() == country_off) {
+                                        $("#country-btn").attr("src",country_on);
+                                        response_object["locality"]["country"] = 1;
+                                } else {
+                                        $("#country-btn").attr("src",country_off);
+                                        response_object["locality"]["country"] = 0;
+                                }
                         });
                         $("#next_img").attr("src",next_btn_src);
                 }
@@ -236,20 +258,22 @@
 		if (question_counter > question_max) {
 			$("#progress-string").text("");
 			$("#question-string").text("Here are your suggestions");
-			$.ajax({url:"http://139.59.172.139/api/get_dogs",
+			$.ajax({url:"http://mykindofdog.com/api/get_dogs",
 				type:"GET",
 				data: response_object,
 				dataType: 'json',
 				success: function(res) {
 					var response = res;
-					var trHTML = '';
+					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><thead><th>Breed</th><th>Size</th><th>Locality</th><tbody>';
         				for (dog in response['dogs']) {
             					trHTML += '<tr><td>' + response['dogs'][dog].dog_name + '</td><td>' + response['dogs'][dog].size +  '</td><td>' + response['dogs'][dog].locality + '</td></tr>';
 					}
+					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);
 				}
 			});
 			// Message explaining results are being fetched
+			$("#next_img").attr("src",start_again_btn_src);
 		}
 	};
 	</script>
