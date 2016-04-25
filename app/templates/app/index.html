@@ -184,7 +184,7 @@
 			var static_string = "http://mykindofdog.com/static";
 			var small_str_off = static_string + question_object["size"]["small_off"];
 			var small_str_on = static_string + question_object["size"]["small_on"];
-			size_img = $('<div id="size_img"><div id="row-one" class="row"><img id="sml-btn" /></div></div>');
+			size_img = $('<div class="square-btns" id="size_img"><div id="row-one" class="row"><img id="sml-btn" /></div></div>');
 			$("#selection-row").append(size_img);
 			$("#sml-btn").attr("src",small_str_off);
 			$("#sml-btn").on("click",function() {
@@ -251,7 +251,7 @@
                         var static_string = "http://mykindofdog.com/static";
                         var city_off = static_string + question_object["locality"]["city_off"];
                         var city_on = static_string + question_object["locality"]["city_on"];
-                        locality_img = $('<div id="locality_img"><div id="row-one" class="row"><img id="city-btn" /></div></div>');
+                        locality_img = $('<div class="rectangle-btns" id="locality_img"><div id="row-one" class="row"><img id="city-btn" /></div></div>');
                         $("#selection-row").append(locality_img);
                         $("#city-btn").attr("src",city_off);
                         $("#city-btn").on("click",function() {
