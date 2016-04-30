@@ -14,6 +14,7 @@ class Dog(models.Model):
     exercise = models.CharField(max_length=50)
     locality = models.CharField(max_length=50)
     lifespan = models.CharField(max_length=50)
+    good_for_allergies = models.CharField(max_length=50)
 
     def __str__(self):
         return self.dog_name 
