@@ -34,6 +34,17 @@ def index(request):
     context['question_obj']['locality']['img_urls']['city_on'] = '/img/living-btns/city-btn-down.png'
     context['question_obj']['locality']['img_urls']['country_off'] = '/img/living-btns/country-btn.png'
     context['question_obj']['locality']['img_urls']['country_on'] = '/img/living-btns/country-btn-down.png'
+    # allergies
+    context['question_obj']['allergy'] = {}
+    context['question_obj']['allergy']['question_no'] = 3
+    context['question_obj']['allergy']['question_attr'] = 'allergy'
+    context['question_obj']['allergy']['question_text'] = 'Allergies?'
+    context['question_obj']['allergy']['img_urls'] = {}
+    context['question_obj']['allergy']['img_urls']['yes_allergy_off'] = '/img/allergy-btns/yes-allergy-btn.png'
+    context['question_obj']['allergy']['img_urls']['yes_allergy_on'] = '/img/allergy-btns/yes-allergy-btn-down.png'
+    context['question_obj']['allergy']['img_urls']['no_allergy_off'] = '/img/allergy-btns/no-allergy-btn.png'
+    context['question_obj']['allergy']['img_urls']['no_allergy_on'] = '/img/allergy-btns/no-allergy-btn-down.png'
+
     return render(request, 'app/index.html', context)
 
 def get_dogs(request):
