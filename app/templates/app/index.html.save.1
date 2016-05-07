@@ -73,55 +73,7 @@
 	}
 	}
 
-	/* Small Devices, Tablets */
-   	@media only screen and (min-width : 768px) and (min-height : 1000px) {
-	#head_img {
-                margin-top: 25px;
-                margin-bottom: 25px;
-                height: auto;
-                width: 400px;
-        }
 
-        #question-string {
-                font-size: 72px;
-                margin-top: 0;
-                padding-left: 10px;
-                padding-right: 10px;
-                padding-bottom: 45px;
-        }
-
-        #gif_img {
-                width: 550px;
-        }
-
-        #next_img {
-                width: 350px;
-        }
-    	}
-
-	/* Medium Devices, Desktops */
-    	@media only screen and (min-width : 992px) {
-        #head_img {
-                margin-top: 25px;
-                margin-bottom: 25px;
-                height: auto;
-                width: 300px;
-        }
-	#question-string {
-                font-size: 120px;
-                margin-top: 0;
-                padding-left: 10px;
-                padding-right: 10px;
-                padding-bottom: 45px;
-        }
-
-
-    	}
-
-    	/* Large Devices, Wide Screens */
-   	@media only screen and (min-width : 1200px) {
-
-   	}
 
 	#head_img {
 		display: block;
@@ -238,7 +190,7 @@
 		$("#next_img").on("click",nextQuestion);
 	});
 	question_counter = 0;
-	question_max = 4;
+	question_max = 3;
 	question_order = {};
 	question_order["1"] = "size";
 	response_object["size"] = {};
@@ -399,42 +351,6 @@
 			$("#next_img").attr("src",next_btn_src);
 		}
 
-		if (question_attr == "exercise") {
-                        $("#gif_img").remove();
-                        var progress_update = "Question " + question_counter.toString() + " of " + question_max;
-                        $("#progress-string").text(progress_update);
-                        $("#question-string").text(question_object[question_attr]["question_text"]);
-                        var static_string = "http://mykindofdog.com/static";
-                        var yes_allergy_off = static_string + question_object["allergy"]["yes_allergy_off"];
-                        var yes_allergy_on = static_string + question_object["allergy"]["yes_allergy_on"];
-                        allergy_img = $('<div class="rectangle-btns" id="allergy_img"><div id="row-one" class="row"><img id="yes-allergy-btn" /></div></div>');
-                        $("#selection-row").append(allergy_img);
-                        $("#yes-allergy-btn").attr("src",yes_allergy_off);
-                        $("#yes-allergy-btn").on("click",function() {
-                                if ($("#yes-allergy-btn").attr("src").toString() == yes_allergy_off) {
-                                        $("#yes-allergy-btn").attr("src",yes_allergy_on);
-                                        response_object["allergy"]["yes"] = 1;
-                                } else {
-                                        $("#yes-allergy-btn").attr("src",yes_allergy_off);
-                                        response_object["allergy"]["yes"] = 0;
-                                }
-                        });
-                        var no_allergy_off = static_string + question_object["allergy"]["no_allergy_off"];
-                        var no_allergy_on = static_string + question_object["allergy"]["no_allergy_on"];
-                        allergy_img = $('<div id="row-two" class="row"><img id="no-allergy-btn" /></div>');
-                        $("#allergy_img").append(allergy_img);
-                        $("#no-allergy-btn").attr("src",no_allergy_off);
-                        $("#no-allergy-btn").on("click",function() {
-                                if ($("#no-allergy-btn").attr("src").toString() == no_allergy_off) {
-                                        $("#no-allergy-btn").attr("src",no_allergy_on);
-					response_object["allergy"]["no"] = 1;
-                                } else {
-                                        $("#no-allergy-btn").attr("src",no_allergy_off);
-                                        response_object["allergy"]["no"] = 0;
-                                }
-                        });
-                        $("#next_img").attr("src",next_btn_src);
-                }
 
 		if (question_counter > question_max) {
 			$("#progress-string").text("");
