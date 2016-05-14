@@ -223,11 +223,24 @@
 	question_object["allergy"] = {};
 	question_object["allergy"]["question_no"] = 3;
 	question_object["allergy"]["question_attr"] = "allergy";
-	question_object["allergy"]["question_test"] = "Allergies?";
+	question_object["allergy"]["question_text"] = "Allergies?";
 	question_object["allergy"]["yes_allergy_off"] = "{{question_obj.allergy.img_urls.yes_allergy_off}}";
 	question_object["allergy"]["yes_allergy_on"] = "{{question_obj.allergy.img_urls.yes_allergy_on}}";
 	question_object["allergy"]["no_allergy_off"] = "{{question_obj.allergy.img_urls.no_allergy_off}}";
 	question_object["allergy"]["no_allergy_on"] = "{{question_obj.allergy.img_urls.no_allergy_on}}";
+
+	question_object["exercise"] = {};
+	question_object["exercise"]["question_no"] = 4;
+        question_object["exercise"]["question_attr"] = "exercise";
+        question_object["exercise"]["question_text"] = "Exercise?";
+	question_object["exercise"]["short_off"] = "{{question_obj.exercise.img_urls.short_off}}"; 
+	question_object["exercise"]["short_on"] = "{{question_obj.exercise.img_urls.short_on}}";
+	question_object["exercise"]["medium_off"] = "{{question_obj.exercise.img_urls.medium_off}}";
+	question_object["exercise"]["medium_on"] = "{{question_obj.exercise.img_urls.medium_on}}";
+	question_object["exercise"]["long_off"] = "{{question_obj.exercise.img_urls.long_off}}";
+	question_object["exercise"]["long_on"] = "{{question_obj.exercise.img_urls.long_on}}";
+	question_object["exercise"]["vlong_off"] = "{{question_obj.exercise.img_urls.vlong_off}}";
+	question_object["exercise"]["vlong_on"] = "{{question_obj.exercise.img_urls.vlong_on}}";
 
 	$(document).ready(function() {
 		$("#header-row").prepend('<img id="head_img" src={% static 'img/global/logo.png' %} />');
@@ -238,7 +251,7 @@
 		$("#next_img").on("click",nextQuestion);
 	});
 	question_counter = 0;
-	question_max = 4;
+	question_max = 5;
 	question_order = {};
 	question_order["1"] = "size";
 	response_object["size"] = {};
@@ -254,6 +267,12 @@
         response_object["allergy"] = {};
         response_object["allergy"]["yes"] = 0;
         response_object["allergy"]["no"] = 0;
+	question_order["4"] = "exercise";
+	response_object["exercise"] = {};
+	response_object["exercise"]["short"] = 0;
+	response_object["exercise"]["medium"] = 0;
+	response_object["exercise"]["long"] = 0;
+	response_object["exercise"]["vlong"] = 0;
 	
         function nextQuestion() {
 		question_counter++;
@@ -405,32 +424,60 @@
                         $("#progress-string").text(progress_update);
                         $("#question-string").text(question_object[question_attr]["question_text"]);
                         var static_string = "http://mykindofdog.com/static";
-                        var yes_allergy_off = static_string + question_object["allergy"]["yes_allergy_off"];
-                        var yes_allergy_on = static_string + question_object["allergy"]["yes_allergy_on"];
-                        allergy_img = $('<div class="rectangle-btns" id="allergy_img"><div id="row-one" class="row"><img id="yes-allergy-btn" /></div></div>');
-                        $("#selection-row").append(allergy_img);
-                        $("#yes-allergy-btn").attr("src",yes_allergy_off);
-                        $("#yes-allergy-btn").on("click",function() {
-                                if ($("#yes-allergy-btn").attr("src").toString() == yes_allergy_off) {
-                                        $("#yes-allergy-btn").attr("src",yes_allergy_on);
-                                        response_object["allergy"]["yes"] = 1;
+                        var short_off = static_string + question_object["exercise"]["short_off"];
+                        var short_on = static_string + question_object["exercise"]["short_on"];
+                        exercise_img = $('<div class="square-btns" id="exercise_img"><div id="row-one" class="row"><img id="short-btn" /></div></div>');
+                        $("#selection-row").append(exercise_img);
+                        $("#short-btn").attr("src",short_off);
+                        $("#short-btn").on("click",function() {
+                                if ($("#short-btn").attr("src").toString() == short_off) {
+                                        $("#short-btn").attr("src",short_on);
+                                        response_object["exercise"]["short"] = 1;
                                 } else {
-                                        $("#yes-allergy-btn").attr("src",yes_allergy_off);
-                                        response_object["allergy"]["yes"] = 0;
+                                        $("#short-btn").attr("src",short_off);
+                                        response_object["exercise"]["short"] = 0;
                                 }
                         });
-                        var no_allergy_off = static_string + question_object["allergy"]["no_allergy_off"];
-                        var no_allergy_on = static_string + question_object["allergy"]["no_allergy_on"];
-                        allergy_img = $('<div id="row-two" class="row"><img id="no-allergy-btn" /></div>');
-                        $("#allergy_img").append(allergy_img);
-                        $("#no-allergy-btn").attr("src",no_allergy_off);
-                        $("#no-allergy-btn").on("click",function() {
-                                if ($("#no-allergy-btn").attr("src").toString() == no_allergy_off) {
-                                        $("#no-allergy-btn").attr("src",no_allergy_on);
-					response_object["allergy"]["no"] = 1;
+			var medium_off = static_string + question_object["exercise"]["medium_off"];
+                        var medium_on = static_string + question_object["exercise"]["medium_on"];
+			exercise_img = $('<img id="medium-btn" />');
+			$("#exercise_img").append(exercise_img);
+                        $("#medium-btn").attr("src",medium_off);
+                        $("#medium-btn").on("click",function() {
+                                if ($("#medium-btn").attr("src").toString() == medium_off) {
+                                        $("#medium-btn").attr("src",medium_on);
+                                        response_object["exercise"]["medium"] = 1;
                                 } else {
-                                        $("#no-allergy-btn").attr("src",no_allergy_off);
-                                        response_object["allergy"]["no"] = 0;
+                                        $("#medium-btn").attr("src",medium_off);
+                                        response_object["exercise"]["medium"] = 0;
+                                }
+                        });
+                        var long_off = static_string + question_object["exercise"]["long_off"];
+                        var long_on = static_string + question_object["exercise"]["long_on"];
+                        allergy_img = $('<div id="row-two" class="row"><img id="long-btn" /></div>');
+                        $("#exercise_img").append(exercise_img);
+                        $("#long-btn").attr("src",long_off);
+                        $("#long-btn").on("click",function() {
+                                if ($("#long-btn").attr("src").toString() == long_off) {
+                                        $("#long-btn").attr("src",long_on);
+					response_object["exercise"]["long"] = 1;
+                                } else {
+                                        $("#long-btn").attr("src",long_off);
+                                        response_object["exercise"]["long"] = 0;
+                                }
+                        });
+			var vlong_off = static_string + question_object["exercise"]["vlong_off"];
+                        var vlong_on = static_string + question_object["exercise"]["vlong_on"];
+                        exercise_img = $('<img id="vlong-btn" />');
+                        $("#exercise_img").append(exercise_img);
+                        $("#vlong-btn").attr("src",vlong_off);
+                        $("#vlong-btn").on("click",function() {
+                                if ($("#vlong-btn").attr("src").toString() == vlong_off) {
+                                        $("#vlong-btn").attr("src",vlong_on);
+                                        response_object["exercise"]["vlong"] = 1;
+                                } else {
+                                        $("#vlong-btn").attr("src",vlong_off);
+                                        response_object["exercise"]["vlong"] = 0;
                                 }
                         });
                         $("#next_img").attr("src",next_btn_src);

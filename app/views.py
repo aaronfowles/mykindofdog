@@ -44,6 +44,20 @@ def index(request):
     context['question_obj']['allergy']['img_urls']['yes_allergy_on'] = '/img/allergy-btns/yes-allergy-btn-down.png'
     context['question_obj']['allergy']['img_urls']['no_allergy_off'] = '/img/allergy-btns/no-allergy-btn.png'
     context['question_obj']['allergy']['img_urls']['no_allergy_on'] = '/img/allergy-btns/no-allergy-btn-down.png'
+    # exercise
+    context['question_obj']['exercise'] = {}
+    context['question_obj']['exercise']['question_no'] = 4
+    context['question_obj']['exercise']['question_attr'] = 'exercise'
+    context['question_obj']['exercise']['question_text'] = 'Exercise?'
+    context['question_obj']['exercise']['img_urls'] = {}
+    context['question_obj']['exercise']['img_urls']['short_off'] = '/img/exercise-btns/short-exercise-btn.png'
+    context['question_obj']['exercise']['img_urls']['short_on'] = '/img/exercise-btns/short-exercise-btn-down.png'
+    context['question_obj']['exercise']['img_urls']['medium_off'] = '/img/exercise-btns/med-exercise-btn.png'
+    context['question_obj']['exercise']['img_urls']['medium_on'] = '/img/exercise-btns/med-exercise-btn-down.png'
+    context['question_obj']['exercise']['img_urls']['long_off'] = '/img/exercise-btns/long-exercise-btn.png'
+    context['question_obj']['exercise']['img_urls']['long_on'] = '/img/exercise-btns/long-exercise-btn-down.png'
+    context['question_obj']['exercise']['img_urls']['vlong_off'] = '/img/exercise-btns/vlong-exercise-btn.png'
+    context['question_obj']['exercise']['img_urls']['vlong_on'] = '/img/exercise-btns/vlong-exercise-btn-down.png'
 
     return render(request, 'app/index.html', context)
 
