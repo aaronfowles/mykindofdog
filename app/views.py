@@ -63,6 +63,11 @@ def index(request):
     context['question_obj']['haircare']['question_no'] = 5
     context['question_obj']['haircare']['question_attr'] = 'haircare'
     context['question_obj']['haircare']['question_text'] = 'Grooming?'
+    context['question_obj']['haircare']['img_urls'] = {}
+    context['question_obj']['haircare']['img_urls']['low_off'] = '/img/haircare-btns/low-maintenance-btn.png'
+    context['question_obj']['haircare']['img_urls']['low_on'] = '/img/haircare-btns/low-maintenance-btn-down.png'
+    context['question_obj']['haircare']['img_urls']['high_off'] = '/img/haircare-btns/high-maintenance-btn.png'
+    context['question_obj']['haircare']['img_urls']['high_on'] = '/img/haircare-btns/high-maintenance-btn-down.png'
 
     return render(request, 'app/index.html', context)
 

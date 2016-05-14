@@ -276,6 +276,12 @@
 	question_object["exercise"]["vlong_off"] = "{{question_obj.exercise.img_urls.vlong_off}}";
 	question_object["exercise"]["vlong_on"] = "{{question_obj.exercise.img_urls.vlong_on}}";
 
+	question_object["haircare"] = {};
+	question_object["haircare"]["low_off"] = "{{question_obj.haircare.img_urls.low_off}}";
+	question_object["haircare"]["low_on"] = "{{question_obj.haircare.img_urls.low_on}}";
+	question_object["haircare"]["high_off"] = "{{question_obj.haircare.img_urls.high_off}}";
+	question_object["haircare"]["high_on"] = "{{question_obj.haircare.img_urls.high_on}}";
+
 	$(document).ready(function() {
 		$("#header-row").prepend('<img id="head_img" src={% static 'img/global/logo.png' %} />');
 		$("#selection-row").prepend('<img id="gif_img" src={% static 'img/dogs-animated.gif' %} />');
@@ -307,6 +313,10 @@
 	response_object["exercise"]["medium"] = 0;
 	response_object["exercise"]["long"] = 0;
 	response_object["exercise"]["vlong"] = 0;
+	question_order["5"] = "haircare";
+	response_object["haircare"] = {};
+	response_object["haircare"]["low"] = 0;
+        response_object["haircare"]["high"] = 0;
 	
         function nextQuestion() {
 		question_counter++;
@@ -516,6 +526,44 @@
                         });
                         $("#next_img").attr("src",next_btn_src);
                 }
+
+		if (question_attr == "haircare") {
+                        $("#gif_img").remove();
+                        var progress_update = "Question " + question_counter.toString() + " of " + question_max;
+                        $("#progress-string").text(progress_update);
+                        $("#question-string").text(question_object[question_attr]["question_text"]);
+                        var static_string = "http://mykindofdog.com/static";
+                        var low_off = static_string + question_object["haircare"]["low_off"];
+                        var low_on = static_string + question_object["haircare"]["low_on"];
+                        haircare_img = $('<div class="rectangle-btns" id="haircare_img"><div id="row-one" class="row"><img id="low-btn" /></div></div>');
+                        $("#selection-row").append(haircare_img);
+                        $("#low-btn").attr("src",low_off);
+                        $("#low-btn").on("click",function() {
+                                if ($("#low-btn").attr("src").toString() == low_off) {
+                                        $("#low-btn").attr("src",low_on);
+                                        response_object["haircare"]["low"] = 1;
+                                } else {
+                                        $("#low-btn").attr("src",low_off);
+                                        response_object["haircare"]["low"] = 0;
+                                }
+                        });
+			var high_off = static_string + question_object["haircare"]["high_off"];
+                        var high_on = static_string + question_object["haircare"]["high_on"];
+                        haircare_img = $('<div id="row-two" class="row"><img id="high-btn" /></div>');
+                        $("#haircare_img").append(haircare_img);
+                        $("#high-btn").attr("src",high_off);
+                        $("#high-btn").on("click",function() {
+                                if ($("#high-btn").attr("src").toString() == high_off) {
+                                        $("#high-btn").attr("src",high_on);
+                                        response_object["haircare"]["high"] = 1;
+                                } else {
+                                        $("#haircare-btn").attr("src",high_off);
+                                        response_object["haircare"]["high"] = 0;
+                                }
+                        });
+                        $("#next_img").attr("src",next_btn_src);
+                }
+
 
 		if (question_counter > question_max) {
 			$("#progress-string").text("");
