@@ -72,6 +72,14 @@ def get_dogs(request):
     locality_city = int(request.GET['locality[city]'])
     locality_country = int(request.GET['locality[country]'])
 
+    allergy_yes = int(request.GET['allergy[yes]'])
+    allergy_no = int(request.GET['allergy[no]'])
+
+    exercise_short = int(request.GET['exercise[short]'])
+    exercise_medium = int(request.GET['exercise[medium]'])
+    exercise_long = int(request.GET['exercise[long]'])
+    exercise_vlong = int(request.GET['exercise[vlong]'])
+
     all_dogs = models.Dog.objects.all()
 
     size_dogs = all_dogs
@@ -92,7 +100,24 @@ def get_dogs(request):
     if (locality_country == 1):
         locality_dogs = locality_dogs
 
-    result_dogs = locality_dogs
+    # filter for allergies
+    allergy_dogs = locality_dogs
+    if (allergy_yes == 1):
+        allergy_dogs = allergy_dogs.filter(good_for_allergies='Good')
+
+    # filter for exercise
+    exercise_dogs = allergy_dogs
+    if (exercise_short == 0):
+        exercise_dogs = exercise_dogs.exclude(exercise='Up to 30 mins')
+    if (exercise_medium == 0):
+        exercise_dogs = exercise_dogs.exclude(exercise='Up to 1 hour')
+    if (exercise_long == 0):
+        exercise_dogs = exercise_dogs.exclude(exercise='Up to 2 hours')
+    if (exercise_vlong == 0):
+        exercise_dogs = exercise_dogs.exclude(exercise='More than 2 hours')
+
+
+    result_dogs = exercise_dogs
 
     context['dogs'] = []
     for dog in result_dogs:
@@ -101,6 +126,8 @@ def get_dogs(request):
         c['dog_name'] = str(dog.dog_name)
         c['size'] = str(dog.size)
         c['locality'] = str(dog.locality)
+        c['allergies'] = str(dog.good_for_allergies)
+        c['exercise'] = str(dog.exercise)
         context['dogs'].append(c)
     return JsonResponse(context)
 

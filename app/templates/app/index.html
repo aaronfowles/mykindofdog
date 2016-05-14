@@ -56,6 +56,12 @@
 		width: 240px;
 	}
 
+	#progress-string {
+                font-size: 28px;
+                padding-left: 10px;
+                padding-right: 10px;
+        }
+
 	#question-string {
 		font-size: 42px;
 		margin-top: 0;
@@ -82,9 +88,17 @@
                 width: 400px;
         }
 
+	#progress-string {
+               font-size: 48px;
+               font-weight: 400;
+               margin-top: 35px;
+               padding-left: 10px;
+               padding-right: 10px;
+        }
+
         #question-string {
                 font-size: 72px;
-                margin-top: 0;
+                margin-top: 25px;
                 padding-left: 10px;
                 padding-right: 10px;
                 padding-bottom: 45px;
@@ -93,6 +107,12 @@
         #gif_img {
                 width: 550px;
         }
+
+	#sml-btn, #med-btn, #lrg-btn, #gnt-btn {
+    		width: 350px;
+		height: 350px;
+		padding: 0 35px 35px 0;
+	}
 
         #next_img {
                 width: 350px;
@@ -144,6 +164,14 @@
 	#next-row {
 		height: 14%;
 	}
+
+	#progress-string {
+                font-family: "Roboto", Arial, sans-serif;
+                font-weight: 400;
+                text-align: center;
+                color: #575757;
+        }
+
 	#question-string {
 		font-family: "Roboto", Arial, sans-serif;
 		font-weight: 400;
@@ -426,7 +454,7 @@
                         var static_string = "http://mykindofdog.com/static";
                         var short_off = static_string + question_object["exercise"]["short_off"];
                         var short_on = static_string + question_object["exercise"]["short_on"];
-                        exercise_img = $('<div class="square-btns" id="exercise_img"><div id="row-one" class="row"><img id="short-btn" /></div></div>');
+                        exercise_img = $('<div class="square-btns" id="exercise_img"><div id="row-one" class="row"><img id="short-btn" />');
                         $("#selection-row").append(exercise_img);
                         $("#short-btn").attr("src",short_off);
                         $("#short-btn").on("click",function() {
@@ -440,8 +468,8 @@
                         });
 			var medium_off = static_string + question_object["exercise"]["medium_off"];
                         var medium_on = static_string + question_object["exercise"]["medium_on"];
-			exercise_img = $('<img id="medium-btn" />');
-			$("#exercise_img").append(exercise_img);
+			exercise_img = $('<img id="medium-btn" /></div>');
+			$("#row-one").append(exercise_img);
                         $("#medium-btn").attr("src",medium_off);
                         $("#medium-btn").on("click",function() {
                                 if ($("#medium-btn").attr("src").toString() == medium_off) {
@@ -454,7 +482,7 @@
                         });
                         var long_off = static_string + question_object["exercise"]["long_off"];
                         var long_on = static_string + question_object["exercise"]["long_on"];
-                        allergy_img = $('<div id="row-two" class="row"><img id="long-btn" /></div>');
+                        exercise_img = $('<div id="row-two" class="row"><img id="long-btn" />');
                         $("#exercise_img").append(exercise_img);
                         $("#long-btn").attr("src",long_off);
                         $("#long-btn").on("click",function() {
@@ -468,8 +496,8 @@
                         });
 			var vlong_off = static_string + question_object["exercise"]["vlong_off"];
                         var vlong_on = static_string + question_object["exercise"]["vlong_on"];
-                        exercise_img = $('<img id="vlong-btn" />');
-                        $("#exercise_img").append(exercise_img);
+                        exercise_img = $('<img id="vlong-btn" /></div></div>');
+                        $("#row-two").append(exercise_img);
                         $("#vlong-btn").attr("src",vlong_off);
                         $("#vlong-btn").on("click",function() {
                                 if ($("#vlong-btn").attr("src").toString() == vlong_off) {
@@ -492,7 +520,7 @@
 				dataType: 'json',
 				success: function(res) {
 					var response = res;
-					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><thead><th>Breed</th><th>Size</th><th>Locality</th><tbody>';
+					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
             					trHTML += '<tr><td>' + response['dogs'][dog].dog_name + '</td><td>' + response['dogs'][dog].size +  '</td><td>' + response['dogs'][dog].locality + '</td></tr>';
 					}
