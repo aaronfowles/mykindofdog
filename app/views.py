@@ -58,6 +58,11 @@ def index(request):
     context['question_obj']['exercise']['img_urls']['long_on'] = '/img/exercise-btns/long-exercise-btn-down.png'
     context['question_obj']['exercise']['img_urls']['vlong_off'] = '/img/exercise-btns/vlong-exercise-btn.png'
     context['question_obj']['exercise']['img_urls']['vlong_on'] = '/img/exercise-btns/vlong-exercise-btn-down.png'
+    # haircare
+    context['question_obj']['haircare'] = {}
+    context['question_obj']['haircare']['question_no'] = 5
+    context['question_obj']['haircare']['question_attr'] = 'haircare'
+    context['question_obj']['haircare']['question_text'] = 'Grooming?'
 
     return render(request, 'app/index.html', context)
 
@@ -79,6 +84,9 @@ def get_dogs(request):
     exercise_medium = int(request.GET['exercise[medium]'])
     exercise_long = int(request.GET['exercise[long]'])
     exercise_vlong = int(request.GET['exercise[vlong]'])
+
+    haircare_low = int(request.GET['haircare[low]'])
+    haircare_high = int(request.GET['haircare[high]'])
 
     all_dogs = models.Dog.objects.all()
 
@@ -116,8 +124,12 @@ def get_dogs(request):
     if (exercise_vlong == 0):
         exercise_dogs = exercise_dogs.exclude(exercise='More than 2 hours')
 
+    # filter for haircare
+    haircare_dogs = exercise_dogs
+    if (haircare_low == 1 or haircare_high == 0):
+        haircare_dogs = haircare_dogs.exclude(grooming='Every day')
 
-    result_dogs = exercise_dogs
+    result_dogs = haircare_dogs
 
     context['dogs'] = []
     for dog in result_dogs:
@@ -128,6 +140,7 @@ def get_dogs(request):
         c['locality'] = str(dog.locality)
         c['allergies'] = str(dog.good_for_allergies)
         c['exercise'] = str(dog.exercise)
+        c['haircare'] = str(dog.grooming)
         context['dogs'].append(c)
     return JsonResponse(context)
 

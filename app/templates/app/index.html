@@ -108,10 +108,15 @@
                 width: 550px;
         }
 
-	#sml-btn, #med-btn, #lrg-btn, #gnt-btn {
+	#sml-btn, #med-btn, #lrg-btn, #gnt-btn, #short-btn, #medium-btn, #long-btn, #vlong-btn {
     		width: 350px;
 		height: 350px;
 		padding: 0 35px 35px 0;
+	}
+
+	#city-btn, #country-btn, #yes-allergy-btn, #no-allergy-btn {
+		width: 735px;
+		padding: 0 0 35px 0;
 	}
 
         #next_img {
@@ -155,6 +160,7 @@
 	}
 	#question-row {
 	}
+
 	#selection-row {
 		height: 50%;
 		min-height: 50%;
@@ -193,8 +199,8 @@
 	}
 	#sml-btn, #med-btn, #lrg-btn, #gnt-btn {
 		display: inline-block;
-		padding: 0 20px 20px 0;
 	}
+
 	#next_img {
 		display: block;
 		margin-right: auto;
@@ -251,7 +257,7 @@
 	question_object["allergy"] = {};
 	question_object["allergy"]["question_no"] = 3;
 	question_object["allergy"]["question_attr"] = "allergy";
-	question_object["allergy"]["question_text"] = "Allergies?";
+	question_object["allergy"]["question_text"] = "Do you suffer from any allergies?";
 	question_object["allergy"]["yes_allergy_off"] = "{{question_obj.allergy.img_urls.yes_allergy_off}}";
 	question_object["allergy"]["yes_allergy_on"] = "{{question_obj.allergy.img_urls.yes_allergy_on}}";
 	question_object["allergy"]["no_allergy_off"] = "{{question_obj.allergy.img_urls.no_allergy_off}}";
@@ -260,7 +266,7 @@
 	question_object["exercise"] = {};
 	question_object["exercise"]["question_no"] = 4;
         question_object["exercise"]["question_attr"] = "exercise";
-        question_object["exercise"]["question_text"] = "Exercise?";
+        question_object["exercise"]["question_text"] = "How much excercise can you give your dog each day?";
 	question_object["exercise"]["short_off"] = "{{question_obj.exercise.img_urls.short_off}}"; 
 	question_object["exercise"]["short_on"] = "{{question_obj.exercise.img_urls.short_on}}";
 	question_object["exercise"]["medium_off"] = "{{question_obj.exercise.img_urls.medium_off}}";
@@ -513,7 +519,7 @@
 
 		if (question_counter > question_max) {
 			$("#progress-string").text("");
-			$("#question-string").text("Here are your suggestions");
+			$("#question-string").text("My kind of dog is a...");
 			$.ajax({url:"http://mykindofdog.com/api/get_dogs",
 				type:"GET",
 				data: response_object,
