@@ -576,7 +576,7 @@
 					var response = res;
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
-            					trHTML += '<tr><td>' + response['dogs'][dog].dog_name + '</td><td>' + response['dogs'][dog].size +  '</td><td>' + response['dogs'][dog].locality + '</td></tr>';
+            					trHTML += '<tr><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td>' + response['dogs'][dog].dog_name + '<br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" />' + '</td></tr>';
 					}
 					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);

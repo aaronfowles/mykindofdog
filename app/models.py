@@ -15,6 +15,7 @@ class Dog(models.Model):
     locality = models.CharField(max_length=50)
     lifespan = models.CharField(max_length=50)
     good_for_allergies = models.CharField(max_length=50)
+    dog_img = models.CharField(max_length=50)
 
     def __str__(self):
         return self.dog_name 

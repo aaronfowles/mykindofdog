@@ -146,6 +146,7 @@ def get_dogs(request):
         c['allergies'] = str(dog.good_for_allergies)
         c['exercise'] = str(dog.exercise)
         c['haircare'] = str(dog.grooming)
+        c['dog_img'] = str(dog.dog_img)
         context['dogs'].append(c)
     return JsonResponse(context)
 
