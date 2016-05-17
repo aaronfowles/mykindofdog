@@ -565,8 +565,8 @@
                 }
 
 
-		if (question_counter > question_max) {
-			$("#progress-string").text("");
+		if (question_counter == question_max + 1) {
+			$("#progress-string").text("All finished!");
 			$("#question-string").text("My kind of dog is a...");
 			$.ajax({url:"http://mykindofdog.com/api/get_dogs",
 				type:"GET",
@@ -576,7 +576,7 @@
 					var response = res;
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
-            					trHTML += '<tr><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td>' + response['dogs'][dog].dog_name + '<br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" />' + '</td></tr>';
+            					trHTML += '<tr><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" />' + '</td></tr>';
 					}
 					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);
@@ -584,6 +584,9 @@
 			});
 			// Message explaining results are being fetched
 			$("#next_img").attr("src",start_again_btn_src);
+			$("#next_img").click(function() {
+				window.location.reload();
+			});
 		}
 	};
 	</script>
