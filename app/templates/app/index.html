@@ -210,6 +210,15 @@
 	</style>
 	</head>
 	<body>
+	<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-59LG4S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-59LG4S');</script>
+<!-- End Google Tag Manager -->
 	<div class="container" id="overall">
 		<div class="row" id="header-row">
 		</div>
@@ -379,8 +388,8 @@
                         });
 			var large_str_off = static_string + question_object["size"]["large_off"];
                         var large_str_on = static_string + question_object["size"]["large_on"];
-                        size_img = $('<div id="row-two" class="row"><img id="lrg-btn" /></div>');
-                        $("#size_img").append(size_img);
+                        size_img = $('<img id="lrg-btn" />');
+                        $("#row-one").append(size_img);
                         $("#lrg-btn").attr("src",large_str_off);
                         $("#lrg-btn").on("click",function() {
                                 if ($("#lrg-btn").attr("src").toString() == large_str_off) {
@@ -394,7 +403,7 @@
 			var giant_str_off = static_string + question_object["size"]["giant_off"];
                         var giant_str_on = static_string + question_object["size"]["giant_on"];
                         size_img = $('<img id="gnt-btn" />');
-                        $("#row-two").append(size_img);
+                        $("#row-one").append(size_img);
                         $("#gnt-btn").attr("src",giant_str_off);
                         $("#gnt-btn").on("click",function() {
                                 if ($("#gnt-btn").attr("src").toString() == giant_str_off) {
@@ -432,8 +441,8 @@
                         });
 			var country_off = static_string + question_object["locality"]["country_off"];
                         var country_on = static_string + question_object["locality"]["country_on"];
-			locality_img = $('<div id="row-two" class="row"><img id="country-btn" /></div>');
-			$("#locality_img").append(locality_img);
+			locality_img = $('<img id="country-btn" />');
+			$("#row-one").append(locality_img);
                         $("#country-btn").attr("src",country_off);
                         $("#country-btn").on("click",function() {
                                 if ($("#country-btn").attr("src").toString() == country_off) {
@@ -469,8 +478,8 @@
                         });
                         var no_allergy_off = static_string + question_object["allergy"]["no_allergy_off"];
                         var no_allergy_on = static_string + question_object["allergy"]["no_allergy_on"];
-                        allergy_img = $('<div id="row-two" class="row"><img id="no-allergy-btn" /></div>');
-                        $("#allergy_img").append(allergy_img);
+                        allergy_img = $('<img id="no-allergy-btn" />');
+                        $("#row-one").append(allergy_img);
                         $("#no-allergy-btn").attr("src",no_allergy_off);
                         $("#no-allergy-btn").on("click",function() {
                                 if ($("#no-allergy-btn").attr("src").toString() == no_allergy_off) {
@@ -492,7 +501,7 @@
                         var static_string = "http://mykindofdog.com/static";
                         var short_off = static_string + question_object["exercise"]["short_off"];
                         var short_on = static_string + question_object["exercise"]["short_on"];
-                        exercise_img = $('<div class="square-btns" id="exercise_img"><div id="row-one" class="row"><img id="short-btn" />');
+                        exercise_img = $('<div class="square-btns" id="exercise_img"><div id="row-one" class="row"><img id="short-btn" /></div></div>');
                         $("#selection-row").append(exercise_img);
                         $("#short-btn").attr("src",short_off);
                         $("#short-btn").on("click",function() {
@@ -506,7 +515,7 @@
                         });
 			var medium_off = static_string + question_object["exercise"]["medium_off"];
                         var medium_on = static_string + question_object["exercise"]["medium_on"];
-			exercise_img = $('<img id="medium-btn" /></div>');
+			exercise_img = $('<img id="medium-btn" />');
 			$("#row-one").append(exercise_img);
                         $("#medium-btn").attr("src",medium_off);
                         $("#medium-btn").on("click",function() {
@@ -520,8 +529,8 @@
                         });
                         var long_off = static_string + question_object["exercise"]["long_off"];
                         var long_on = static_string + question_object["exercise"]["long_on"];
-                        exercise_img = $('<div id="row-two" class="row"><img id="long-btn" />');
-                        $("#exercise_img").append(exercise_img);
+                        exercise_img = $('<img id="long-btn" />');
+                        $("#row-one").append(exercise_img);
                         $("#long-btn").attr("src",long_off);
                         $("#long-btn").on("click",function() {
                                 if ($("#long-btn").attr("src").toString() == long_off) {
@@ -534,8 +543,8 @@
                         });
 			var vlong_off = static_string + question_object["exercise"]["vlong_off"];
                         var vlong_on = static_string + question_object["exercise"]["vlong_on"];
-                        exercise_img = $('<img id="vlong-btn" /></div></div>');
-                        $("#row-two").append(exercise_img);
+                        exercise_img = $('<img id="vlong-btn" />');
+                        $("#row-one").append(exercise_img);
                         $("#vlong-btn").attr("src",vlong_off);
                         $("#vlong-btn").on("click",function() {
                                 if ($("#vlong-btn").attr("src").toString() == vlong_off) {
@@ -571,8 +580,8 @@
                         });
 			var high_off = static_string + question_object["haircare"]["high_off"];
                         var high_on = static_string + question_object["haircare"]["high_on"];
-                        haircare_img = $('<div id="row-two" class="row"><img id="high-btn" /></div>');
-                        $("#haircare_img").append(haircare_img);
+                        haircare_img = $('<img id="high-btn" />');
+                        $("#row-one").append(haircare_img);
                         $("#high-btn").attr("src",high_off);
                         $("#high-btn").on("click",function() {
                                 if ($("#high-btn").attr("src").toString() == high_off) {
