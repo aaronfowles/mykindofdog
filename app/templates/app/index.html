@@ -235,10 +235,10 @@
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
       <div class="modal-body">
-	<img class="modal-img" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
-        <h1 class="modal-name">Dog Breed Name</h1>
-	<p class="modal-desc">Description of the breed here</p>
-	<p class="modal-links">External links here...</p>
+	<img id="modal-img" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
+        <h1 id="modal-name">Dog Breed Name</h1>
+	<p id="modal-desc">Description of the breed here</p>
+	<p id="modal-links">External links here...</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -337,6 +337,8 @@
 	response_object["haircare"] = {};
 	response_object["haircare"]["low"] = 0;
         response_object["haircare"]["high"] = 0;
+
+	response = {};
 	
         function nextQuestion() {
 		question_counter++;
@@ -593,14 +595,29 @@
 				data: response_object,
 				dataType: 'json',
 				success: function(res) {
-					var response = res;
+					response = res;
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
-            					trHTML += '<tr><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
+            					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
 					}
 					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);
 					$(".more-info").click(function() {
+						var dog_img = "";
+						var dog_id = $(this).closest("tr").attr("id");
+						var dog_name = "";
+						var dog_size = "";
+						for (var dog in response['dogs']) {
+							console.log(response['dogs'][dog].dog_id);
+							if (response['dogs'][dog].dog_id == dog_id) {
+								dog_img = "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img;
+								dog_name = response['dogs'][dog].dog_name;
+								dog_size = response['dogs'][dog].size;
+							}
+						}
+						$("#modal-img").attr("src",dog_img);
+						$("#modal-name").text(dog_name);
+						$("#modal-desc").text('Size: ' + dog_size);
 						$("#myModal").modal('show');
 					});
 				}
