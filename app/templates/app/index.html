@@ -4,6 +4,7 @@
 	<head>
 	<title>My kind of dog</title>
 	<script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -226,6 +227,25 @@
 			<div id="next-button"></div>
         	</div>
         </div>
+	<!-- Modal -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-body">
+	<img class="modal-img" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
+        <h1 class="modal-name">Dog Breed Name</h1>
+	<p class="modal-desc">Description of the breed here</p>
+	<p class="modal-links">External links here...</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<script>
 	var question_object = {};
 	var response_object = {};
@@ -576,10 +596,13 @@
 					var response = res;
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
-            					trHTML += '<tr><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" />' + '</td></tr>';
+            					trHTML += '<tr><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
 					}
 					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);
+					$(".more-info").click(function() {
+						$("#myModal").modal('show');
+					});
 				}
 			});
 			// Message explaining results are being fetched
@@ -590,5 +613,15 @@
 		}
 	};
 	</script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77911556-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	</body>
 </html>
