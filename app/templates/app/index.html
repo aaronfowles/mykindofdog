@@ -46,83 +46,122 @@
 	#header-row {
 		background: #43A67B;
 	}
-	
-	/* Extra Small Devices, Phones */ 
-    	@media only screen and (min-width : 480px) {
+
+	/* Extra Small Devices, Phones */
+        @media only screen and (min-width : 480px) {
 
 	#head_img {
-		margin-top: 15px;
-		margin-bottom: 15px;
-		height: auto;
-		width: 240px;
-	}
-
-	#progress-string {
-                font-size: 28px;
-                padding-left: 10px;
-                padding-right: 10px;
-        }
-
-	#question-string {
-		font-size: 42px;
-		margin-top: 0;
-		padding-left: 10px;
-		padding-right: 10px;
-		padding-bottom: 30px;
-	}
-
-	#gif_img {
-    		width: 280px;
-	}
-	
-	#next_img {
-		width: 200px;
-	}
-	}
-
-	/* Small Devices, Tablets */
-   	@media only screen and (min-width : 768px) and (min-height : 1000px) {
-	#head_img {
-                margin-top: 25px;
-                margin-bottom: 25px;
+                margin-top: 15px;
+                margin-bottom: 15px;
                 height: auto;
-                width: 400px;
+                width: 240px;
         }
 
-	#progress-string {
-               font-size: 48px;
-               margin-top: 35px;
+        #progress-row {
+                margin: 25px 0 -5px 0;
+        }
+
+
+        #progress-string {
+               font-size: 28px;
+               margin-top: 0px;
                padding-left: 10px;
                padding-right: 10px;
         }
 
         #question-string {
-                font-size: 72px;
-                margin-top: 25px;
+                font-size: 42px;
+                margin-top: 0px;
                 padding-left: 10px;
                 padding-right: 10px;
-                padding-bottom: 45px;
+                padding-bottom: 30px;
         }
 
         #gif_img {
-                width: 550px;
+                width: 320px;
+                width: 45vh;
+        }
+	
+	#selection-row {
+                padding-left: 20px;
+                margin-left: 20%;
+                width: 60%;
         }
 
-	#sml-btn, #med-btn, #lrg-btn, #gnt-btn, #short-btn, #medium-btn, #long-btn, #vlong-btn {
-    		width: 350px;
-		height: 350px;
-		padding: 0 35px 35px 0;
-	}
-
-	#city-btn, #country-btn, #yes-allergy-btn, #no-allergy-btn {
-		width: 735px;
-		padding: 0 0 35px 0;
-	}
-
-        #next_img {
-                width: 350px;
+        .square-btn {
+                width: 200px;
+                height: 200px;
+                padding: 0 20px 20px 0px;
         }
-    	}
+
+        .rectangle-btn {
+                width: auto;
+                height: 200px;
+                padding: 0 20px 20px 0px;
+        }
+
+	#next_img {
+                width: 200px;
+        }
+        }
+
+
+/* Small Devices, Tablets */
+        @media only screen and (min-width : 768px) {
+        #head_img {
+                margin-top: 15px;
+                margin-bottom: 15px;
+                height: auto;
+                width: 240px;
+        }
+
+	#progress-row {
+                margin: 25px 0 -5px 0;
+        }
+
+
+        #progress-string {
+               font-size: 28px;
+               margin-top: 0px;
+               padding-left: 10px;
+               padding-right: 10px;
+        }
+
+        #question-string {
+                font-size: 42px;
+                margin-top: 0px;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 30px;
+        }
+
+        #gif_img {
+		width: 320px;
+		width: 45vh;
+        }
+
+	#selection-row {
+                padding-left: 20px;
+		margin-left: 20%;
+    		width: 60%;
+        }
+
+        .square-btn {
+                width: 200px;
+                height: 200px;
+                padding: 0 20px 20px 0px;
+        }
+
+        .rectangle-btn {
+                width: auto;
+                height: 200px;
+                padding: 0 20px 20px 0px;
+        }
+
+	#next_img {
+                width: 200px;
+        }
+	}
 
 	/* Medium Devices, Desktops */
     	@media only screen and (min-width : 992px) {
@@ -137,17 +176,31 @@
 		margin: 25px 0 5px 0;
 	}
 
+	#progress-string {
+    		font-size: 30px;
+		margin-top: 0px;
+    		padding-left: 10px;
+    		padding-right: 10px;
+	}
+
 	#question-string {
-		font-size: 48px;
+		font-size: 45px;
     		margin-top: 0;
     		padding-left: 10px;
     		padding-right: 10px;
     		padding-bottom: 45px;
         }
 
+	#gif_img {
+                width: 350px;
+		width: 45vh;
+        }
+
 	#selection-row {
-		padding-left: 20px;
-	}
+                padding-left: 20px;
+                margin-left: 0%;
+                width: 100%;
+        }
 
 	.square-btn {
 		width: 220px;
@@ -161,7 +214,123 @@
                 padding: 0 20px 20px 0px;
         }
 
-	
+        #next_img {
+                width: 200px;
+        }
+	}
+
+	/* Small Devices, Tablets */
+        	@media only screen
+  		and (min-device-width: 320px)
+  		and (max-device-width: 420px)
+  		and (-webkit-min-device-pixel-ratio: 2)
+  		and (orientation: portrait) {
+
+        #head_img {
+                margin-top: 25px;
+                margin-bottom: 25px;
+                height: auto;
+                width: 400px;
+        }
+
+        #progress-string {
+               font-size: 48px;
+               margin-top: 5px;
+               padding-left: 10px;
+               padding-right: 10px;
+        }
+
+        #question-string {
+                font-size: 72px;
+                margin-top: 15px;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 45px;
+        }
+
+        #gif_img {
+		display: block;
+                width: 550px;
+        }
+
+        #selection-row {
+                padding-left: 20px;
+                margin-left: 0%;
+                width: 100%;
+        }
+
+
+        .square-btn {
+                width: 350px;
+                height: 350px;
+                padding: 0 30px 30px 0px;
+        }
+
+        .rectangle-btn {
+                width: auto;
+                height: 350px;
+                padding: 0 30px 30px 0px;
+        }
+
+        #next_img {
+                width: 350px;
+        }
+	}
+
+	/* Small Devices, Tablets */
+                @media only screen
+                and (min-device-width: 320px)
+                and (max-device-width: 640px)
+                and (-webkit-min-device-pixel-ratio: 2)
+                and (orientation: landscape) {
+
+        #head_img {
+                margin-top: 5px;
+                margin-bottom: 5px;
+                height: auto;
+                width: 250px;
+        }
+
+        #progress-string {
+               font-size: 24px;
+               margin-top: 0px;
+               padding-left: 10px;
+               padding-right: 10px;
+        }
+
+        #question-string {
+                font-size: 36px;
+                margin-top: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 15px;
+        }
+	 #gif_img {
+                display: none;
+        }
+
+        #selection-row {
+                padding-left: 20px;
+                margin-left: 0%;
+                width: 100%;
+        }
+
+
+        .square-btn {
+                width: 180px;
+                height: 180px;
+                padding: 0 20px 20px 0px;
+        }
+
+        .rectangle-btn {
+                width: auto;
+                height: 180px;
+                padding: 0 20px 20px 0;
+        }
+
+        #next_img {
+                width: 180px;
+        }
 	}
 
 	#head_img {
@@ -201,7 +370,6 @@
 	}
 
 	#gif_img {
-		display: block;
     		margin-left: auto;
     		margin-right: auto;
 	}
@@ -232,6 +400,20 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-59LG4S');</script>
+<script>
+/**
+* Function that tracks a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/
+var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
+</script>
 <!-- End Google Tag Manager -->
 	<div class="container" id="overall">
 		<div class="row" id="header-row">
@@ -267,7 +449,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<span>Grooming: <span id="modal-grooming"></span></span><br>
 	<p id="modal-desc"></p>
 	<h3>Useful Links</h3>
-	<p id="modal-links"><a href="http://google.com">Google</a></p>
+	<p id="modal-links"><span><a href="http://www.hoperescue.org.uk" onclick="trackOutboundLink('http://www.hoperescue.org.uk'); return false">Hope Rescue</a></span></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -628,6 +810,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				dataType: 'json',
 				success: function(res) {
 					response = res;
+					if (response['dogs'].length === 0) {
+						$("#question-string").text("Empty results message here");
+						return;
+					};
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
             					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img src="' + "http://mykindofdog.com/" + 'favicon-96x96.png' + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
@@ -653,8 +839,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								dog_allergy = response['dogs'][dog].allergies;
 								dog_exercise = response['dogs'][dog].exercise;
 								dog_grooming = response['dogs'][dog].haircare;
-								dog_desc = response['dogs'][dog].desc;
-
 							}
 						}
 						$("#modal-img").attr("src",dog_img);
@@ -664,7 +848,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						$("#modal-allergy").text(dog_allergy);
 						$("#modal-exercise").text(dog_exercise);
 						$("#modal-grooming").text(dog_grooming);
-						$("#modal-desc").text(dog_desc);
 						$("#myModal").modal('show');
 					});
 				}
