@@ -6,7 +6,7 @@ from django.db import models
 class Dog(models.Model):
     dog_name = models.CharField(max_length=50)
     search_term = models.CharField(max_length=50)
-    dog_desc = models.CharField(max_length=50)
+    dog_desc = models.CharField(max_length=1000)
     group = models.CharField(max_length=50)
     size = models.CharField(max_length=50)
     weight = models.CharField(max_length=50)

@@ -110,13 +110,11 @@ def get_dogs(request):
     locality_dogs = size_dogs
     if (locality_city == 1):
         locality_dogs = locality_dogs.exclude(locality='Country')
-    if (locality_country == 1):
-        locality_dogs = locality_dogs
 
     # filter for allergies
     allergy_dogs = locality_dogs
     if (allergy_yes == 1):
-        allergy_dogs = allergy_dogs.filter(good_for_allergies='Good')
+        allergy_dogs = allergy_dogs.exclude(good_for_allergies='Bad')
 
     # filter for exercise
     exercise_dogs = allergy_dogs
@@ -147,6 +145,7 @@ def get_dogs(request):
         c['exercise'] = str(dog.exercise)
         c['haircare'] = str(dog.grooming)
         c['dog_img'] = str(dog.dog_img)
+        c['desc'] = str(dog.dog_desc)
         context['dogs'].append(c)
     return JsonResponse(context)
 

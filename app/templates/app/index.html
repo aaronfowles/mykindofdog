@@ -91,7 +91,6 @@
 
 	#progress-string {
                font-size: 48px;
-               font-weight: 400;
                margin-top: 35px;
                padding-left: 10px;
                padding-right: 10px;
@@ -128,26 +127,42 @@
 	/* Medium Devices, Desktops */
     	@media only screen and (min-width : 992px) {
         #head_img {
-                margin-top: 25px;
-                margin-bottom: 25px;
+                margin-top: 15px;
+                margin-bottom: 15px;
                 height: auto;
-                width: 300px;
+                width: 240px;
         }
+
+	#progress-row {
+		margin: 25px 0 5px 0;
+	}
+
 	#question-string {
-                font-size: 120px;
-                margin-top: 0;
-                padding-left: 10px;
-                padding-right: 10px;
-                padding-bottom: 45px;
+		font-size: 48px;
+    		margin-top: 0;
+    		padding-left: 10px;
+    		padding-right: 10px;
+    		padding-bottom: 45px;
         }
 
+	#selection-row {
+		padding-left: 20px;
+	}
 
+	.square-btn {
+		width: 220px;
+		height: 220px;
+		padding: 0 20px 20px 0px;
     	}
 
-    	/* Large Devices, Wide Screens */
-   	@media only screen and (min-width : 1200px) {
+	.rectangle-btn {
+                width: auto;
+                height: 220px;
+                padding: 0 20px 20px 0px;
+        }
 
-   	}
+	
+	}
 
 	#head_img {
 		display: block;
@@ -166,7 +181,6 @@
 		height: 50%;
 		min-height: 50%;
 		text-align: center;
-		padding-left: 20px;
 	}
 	#next-row {
 		height: 14%;
@@ -174,7 +188,7 @@
 
 	#progress-string {
                 font-family: "Roboto", Arial, sans-serif;
-                font-weight: 400;
+                font-weight: 300;
                 text-align: center;
                 color: #575757;
         }
@@ -227,7 +241,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			</h5>
 		</div>
 		<div class="row" id="question-row">
-			<h1 id="question-string">We're here to find <br> the right dog for you!
+			<h1 id="question-string">We're here to find the right dog for you!
 			</h1>
 		</div>
 		<div class="row"  id="selection-row">
@@ -246,8 +260,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="modal-body">
 	<img id="modal-img" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
         <h1 id="modal-name">Dog Breed Name</h1>
-	<p id="modal-desc">Description of the breed here</p>
-	<p id="modal-links">External links here...</p>
+	<span>Size: <span id="modal-size"></span></span><br>
+	<span>Locality: <span id="modal-locality"></span></span><br>
+	<span>Good for Allergies: <span id="modal-allergy"></span></span><br>
+	<span>Daily exercise: <span id="modal-exercise"></span></span><br>
+	<span>Grooming: <span id="modal-grooming"></span></span><br>
+	<p id="modal-desc"></p>
+	<h3>Useful Links</h3>
+	<p id="modal-links"><a href="http://google.com">Google</a></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -295,7 +315,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	question_object["exercise"] = {};
 	question_object["exercise"]["question_no"] = 4;
         question_object["exercise"]["question_attr"] = "exercise";
-        question_object["exercise"]["question_text"] = "How much excercise can you give your dog each day?";
+        question_object["exercise"]["question_text"] = "How much exercise can you give your dog each day?";
 	question_object["exercise"]["short_off"] = "{{question_obj.exercise.img_urls.short_off}}"; 
 	question_object["exercise"]["short_on"] = "{{question_obj.exercise.img_urls.short_on}}";
 	question_object["exercise"]["medium_off"] = "{{question_obj.exercise.img_urls.medium_off}}";
@@ -306,6 +326,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	question_object["exercise"]["vlong_on"] = "{{question_obj.exercise.img_urls.vlong_on}}";
 
 	question_object["haircare"] = {};
+	question_object["haircare"]["question_no"] = 5;
+        question_object["haircare"]["question_attr"] = "haircare";
+        question_object["haircare"]["question_text"] = "Do you have the time for a high maintenance dog?";
 	question_object["haircare"]["low_off"] = "{{question_obj.haircare.img_urls.low_off}}";
 	question_object["haircare"]["low_on"] = "{{question_obj.haircare.img_urls.low_on}}";
 	question_object["haircare"]["high_off"] = "{{question_obj.haircare.img_urls.high_off}}";
@@ -360,7 +383,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			var static_string = "http://mykindofdog.com/static";
 			var small_str_off = static_string + question_object["size"]["small_off"];
 			var small_str_on = static_string + question_object["size"]["small_on"];
-			size_img = $('<div class="square-btns" id="size_img"><div id="row-one" class="row"><img id="sml-btn" /></div></div>');
+			size_img = $('<div id="size_img"><div id="row-one" class="row"><img id="sml-btn" class="square-btn" /></div></div>');
 			$("#selection-row").append(size_img);
 			$("#sml-btn").attr("src",small_str_off);
 			$("#sml-btn").on("click",function() {
@@ -374,7 +397,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			});
 			var med_str_off = static_string + question_object["size"]["medium_off"];
                         var med_str_on = static_string + question_object["size"]["medium_on"];
-                        size_img = $('<img id="med-btn" />');
+                        size_img = $('<img id="med-btn" class="square-btn" />');
                         $("#row-one").append(size_img);
                         $("#med-btn").attr("src",med_str_off);
                         $("#med-btn").on("click",function() {
@@ -388,7 +411,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
 			var large_str_off = static_string + question_object["size"]["large_off"];
                         var large_str_on = static_string + question_object["size"]["large_on"];
-                        size_img = $('<img id="lrg-btn" />');
+                        size_img = $('<img id="lrg-btn" class="square-btn"/>');
                         $("#row-one").append(size_img);
                         $("#lrg-btn").attr("src",large_str_off);
                         $("#lrg-btn").on("click",function() {
@@ -402,7 +425,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
 			var giant_str_off = static_string + question_object["size"]["giant_off"];
                         var giant_str_on = static_string + question_object["size"]["giant_on"];
-                        size_img = $('<img id="gnt-btn" />');
+                        size_img = $('<img id="gnt-btn" class="square-btn" />');
                         $("#row-one").append(size_img);
                         $("#gnt-btn").attr("src",giant_str_off);
                         $("#gnt-btn").on("click",function() {
@@ -427,7 +450,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         var static_string = "http://mykindofdog.com/static";
                         var city_off = static_string + question_object["locality"]["city_off"];
                         var city_on = static_string + question_object["locality"]["city_on"];
-                        locality_img = $('<div class="rectangle-btns" id="locality_img"><div id="row-one" class="row"><img id="city-btn" /></div></div>');
+                        locality_img = $('<div id="locality_img"><div id="row-one" class="row"><img id="city-btn" class="rectangle-btn" /></div></div>');
                         $("#selection-row").append(locality_img);
                         $("#city-btn").attr("src",city_off);
                         $("#city-btn").on("click",function() {
@@ -441,7 +464,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
 			var country_off = static_string + question_object["locality"]["country_off"];
                         var country_on = static_string + question_object["locality"]["country_on"];
-			locality_img = $('<img id="country-btn" />');
+			locality_img = $('<img id="country-btn" class="rectangle-btn" />');
 			$("#row-one").append(locality_img);
                         $("#country-btn").attr("src",country_off);
                         $("#country-btn").on("click",function() {
@@ -464,7 +487,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         var static_string = "http://mykindofdog.com/static";
                         var yes_allergy_off = static_string + question_object["allergy"]["yes_allergy_off"];
                         var yes_allergy_on = static_string + question_object["allergy"]["yes_allergy_on"];
-                        allergy_img = $('<div class="rectangle-btns" id="allergy_img"><div id="row-one" class="row"><img id="yes-allergy-btn" /></div></div>');
+                        allergy_img = $('<div id="allergy_img"><div id="row-one" class="row"><img id="yes-allergy-btn" class="rectangle-btn" /></div></div>');
                         $("#selection-row").append(allergy_img);
                         $("#yes-allergy-btn").attr("src",yes_allergy_off);
                         $("#yes-allergy-btn").on("click",function() {
@@ -478,7 +501,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
                         var no_allergy_off = static_string + question_object["allergy"]["no_allergy_off"];
                         var no_allergy_on = static_string + question_object["allergy"]["no_allergy_on"];
-                        allergy_img = $('<img id="no-allergy-btn" />');
+                        allergy_img = $('<img id="no-allergy-btn" class="rectangle-btn" />');
                         $("#row-one").append(allergy_img);
                         $("#no-allergy-btn").attr("src",no_allergy_off);
                         $("#no-allergy-btn").on("click",function() {
@@ -501,7 +524,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         var static_string = "http://mykindofdog.com/static";
                         var short_off = static_string + question_object["exercise"]["short_off"];
                         var short_on = static_string + question_object["exercise"]["short_on"];
-                        exercise_img = $('<div class="square-btns" id="exercise_img"><div id="row-one" class="row"><img id="short-btn" /></div></div>');
+                        exercise_img = $('<div id="exercise_img"><div id="row-one" class="row"><img id="short-btn" class="square-btn" /></div></div>');
                         $("#selection-row").append(exercise_img);
                         $("#short-btn").attr("src",short_off);
                         $("#short-btn").on("click",function() {
@@ -515,7 +538,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
 			var medium_off = static_string + question_object["exercise"]["medium_off"];
                         var medium_on = static_string + question_object["exercise"]["medium_on"];
-			exercise_img = $('<img id="medium-btn" />');
+			exercise_img = $('<img id="medium-btn" class="square-btn" />');
 			$("#row-one").append(exercise_img);
                         $("#medium-btn").attr("src",medium_off);
                         $("#medium-btn").on("click",function() {
@@ -529,7 +552,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
                         var long_off = static_string + question_object["exercise"]["long_off"];
                         var long_on = static_string + question_object["exercise"]["long_on"];
-                        exercise_img = $('<img id="long-btn" />');
+                        exercise_img = $('<img id="long-btn" class="square-btn" />');
                         $("#row-one").append(exercise_img);
                         $("#long-btn").attr("src",long_off);
                         $("#long-btn").on("click",function() {
@@ -543,7 +566,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
 			var vlong_off = static_string + question_object["exercise"]["vlong_off"];
                         var vlong_on = static_string + question_object["exercise"]["vlong_on"];
-                        exercise_img = $('<img id="vlong-btn" />');
+                        exercise_img = $('<img id="vlong-btn" class="square-btn" />');
                         $("#row-one").append(exercise_img);
                         $("#vlong-btn").attr("src",vlong_off);
                         $("#vlong-btn").on("click",function() {
@@ -566,7 +589,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         var static_string = "http://mykindofdog.com/static";
                         var low_off = static_string + question_object["haircare"]["low_off"];
                         var low_on = static_string + question_object["haircare"]["low_on"];
-                        haircare_img = $('<div class="rectangle-btns" id="haircare_img"><div id="row-one" class="row"><img id="low-btn" /></div></div>');
+                        haircare_img = $('<div id="haircare_img"><div id="row-one" class="row"><img id="low-btn" class="rectangle-btn" /></div></div>');
                         $("#selection-row").append(haircare_img);
                         $("#low-btn").attr("src",low_off);
                         $("#low-btn").on("click",function() {
@@ -580,7 +603,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         });
 			var high_off = static_string + question_object["haircare"]["high_off"];
                         var high_on = static_string + question_object["haircare"]["high_on"];
-                        haircare_img = $('<img id="high-btn" />');
+                        haircare_img = $('<img id="high-btn" class="rectangle-btn" />');
                         $("#row-one").append(haircare_img);
                         $("#high-btn").attr("src",high_off);
                         $("#high-btn").on("click",function() {
@@ -588,7 +611,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         $("#high-btn").attr("src",high_on);
                                         response_object["haircare"]["high"] = 1;
                                 } else {
-                                        $("#haircare-btn").attr("src",high_off);
+                                        $("#high-btn").attr("src",high_off);
                                         response_object["haircare"]["high"] = 0;
                                 }
                         });
@@ -607,7 +630,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					response = res;
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
-            					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img src="' + "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
+            					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img src="' + "http://mykindofdog.com/" + 'favicon-96x96.png' + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
 					}
 					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);
@@ -616,17 +639,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						var dog_id = $(this).closest("tr").attr("id");
 						var dog_name = "";
 						var dog_size = "";
+						var dog_locality = "";
+						var dog_allergy = "";
+						var dog_exercise = "";
+						var dog_grooming = "";
 						for (var dog in response['dogs']) {
 							console.log(response['dogs'][dog].dog_id);
 							if (response['dogs'][dog].dog_id == dog_id) {
-								dog_img = "http://mykindofdog.com/static/img/results-page/" + response['dogs'][dog].dog_img;
+								dog_img = "http://mykindofdog.com/" + 'favicon-96x96.png';
 								dog_name = response['dogs'][dog].dog_name;
 								dog_size = response['dogs'][dog].size;
+								dog_locality = response['dogs'][dog].locality;
+								dog_allergy = response['dogs'][dog].allergies;
+								dog_exercise = response['dogs'][dog].exercise;
+								dog_grooming = response['dogs'][dog].haircare;
+								dog_desc = response['dogs'][dog].desc;
+
 							}
 						}
 						$("#modal-img").attr("src",dog_img);
 						$("#modal-name").text(dog_name);
-						$("#modal-desc").text('Size: ' + dog_size);
+						$("#modal-size").text(dog_size);
+						$("#modal-locality").text(dog_locality);
+						$("#modal-allergy").text(dog_allergy);
+						$("#modal-exercise").text(dog_exercise);
+						$("#modal-grooming").text(dog_grooming);
+						$("#modal-desc").text(dog_desc);
 						$("#myModal").modal('show');
 					});
 				}
