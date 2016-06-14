@@ -161,6 +161,72 @@
 	#next_img {
                 width: 200px;
         }
+	
+	.modal-dialog {
+		position: fixed;
+    		margin: 3%;
+    		width: 94%;
+    		height: 96%;
+	}
+
+	.modal-footer {
+		width: 100%;
+    		bottom: 5px;
+    		padding: 15px;
+    		text-align: center;
+    		border-top: 1px solid #e5e5e5;
+    		position: absolute;
+	}
+
+
+	.btn-overide {
+		color: #FFF;
+    		background-color: #43A67B;
+    		border-color: #ccc;
+		font-family: "Roboto", Arial, sans-serif;
+		font-size: 24px;
+		font-weight: 400;
+		padding: 20px 60px;
+    		border-radius: 10px;
+	}
+
+	.modal-content {
+                height: 96%;
+        }
+
+	.td {
+		text-align: left;
+		vertical-align: middle;
+	}
+
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    		font-family: "Roboto", Arial, sans-serif;
+		vertical-align: middle;
+		font-size: 20px;
+    		color: #575757;
+	}
+
+	img.results {
+		width: 120px;
+		height: auto;
+	}
+
+	.dog-title {
+                font-family: "Roboto", Arial, sans-serif;
+                font-size: 30px;
+    		color: #575757;
+        }
+
+	img.more-info {
+    		width: 60px;
+    		height: 60px;
+	}
+
+	#modal-img {
+                width: 300px;
+		float: left;
+		margin: 0 20px 20px 0;
+        }
 	}
 
 	/* Medium Devices, Desktops */
@@ -275,6 +341,71 @@
         #next_img {
                 width: 350px;
         }
+	.modal-dialog {
+                position: fixed;
+                margin: 3%;
+                width: 94%;
+                height: 96%;
+        }
+
+        .modal-footer {
+                width: 100%;
+                bottom: 10px;
+                padding: 30px;
+                text-align: center;
+                border-top: 1px solid #e5e5e5;
+                position: absolute;
+        }
+
+
+        .btn-overide {
+                color: #FFF;
+                background-color: #43A67B;
+                border-color: #ccc;
+                font-family: "Roboto", Arial, sans-serif;
+                font-size: 48px;
+                font-weight: 400;
+                padding: 40px 120px;
+                border-radius: 10px;
+        }
+
+	.modal-content {
+                height: 96%;
+        }
+
+        .td {
+                text-align: left;
+                vertical-align: middle;
+        }
+
+        .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+                vertical-align: middle;
+		font-family: "Roboto", Arial, sans-serif;
+                font-size: 30px;
+                color: #575757;
+        }
+
+        img.results {
+                width: 240px;
+                height: auto;
+        }
+
+	.dog-title {
+		font-family: "Roboto", Arial, sans-serif;
+		font-size: 40px;
+		color: #575757;
+	}
+
+        img.more-info {
+                width: 120px;
+                height: 120px;
+        }
+
+        #modal-img {
+                width: 400px;
+		float: none;
+                margin: 0 40px 40px 0;
+        }
 	}
 
 	/* Small Devices, Tablets */
@@ -330,6 +461,63 @@
 
         #next_img {
                 width: 180px;
+        }
+
+	.modal-dialog {
+                position: fixed;
+                margin: 3%;
+                width: 94%;
+                height: 96%;
+        }
+
+        .modal-footer {
+                width: 100%;
+                bottom: 5px;
+                padding: 15px;
+                text-align: center;
+                border-top: 1px solid #e5e5e5;
+                position: absolute;
+        }
+
+
+        .btn-overide {
+                color: #FFF;
+                background-color: #43A67B;
+                border-color: #ccc;
+                font-family: "Roboto", Arial, sans-serif;
+                font-size: 48px;
+                font-weight: 400;
+                padding: 40px 120px;
+                border-radius: 10px;
+        }
+
+	.modal-content {
+                height: 96%;
+        }
+
+        .td {
+                text-align: left;
+                vertical-align: middle;
+        }
+
+        .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+                vertical-align: middle;
+        }
+
+        img.results {
+                width: 240px;
+                height: auto;
+        }
+
+        img.more-info {
+                width: 120px;
+                height: 120px;
+        }
+
+        #modal-img {
+                width: 600px;
+                float: left;
+                margin: 0 40px 40px 0;
         }
 	}
 
@@ -438,7 +626,6 @@ var trackOutboundLink = function(url) {
 
     <!-- Modal content-->
     <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
       <div class="modal-body">
 	<img id="modal-img" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
         <h1 id="modal-name">Dog Breed Name</h1>
@@ -452,7 +639,7 @@ var trackOutboundLink = function(url) {
 	<p id="modal-links"><span><a href="http://www.hoperescue.org.uk" onclick="trackOutboundLink('http://www.hoperescue.org.uk'); return false">Hope Rescue</a></span></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default btn-overide" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -816,7 +1003,7 @@ var trackOutboundLink = function(url) {
 					};
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
-            					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img src="' + "http://mykindofdog.com/" + 'favicon-96x96.png' + '" />' + '</td><td><strong class="dog-title" style="font-size:2em">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
+            					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img class="results" src="' + "http://mykindofdog.com/" + 'favicon-96x96.png' + '" />' + '</td><td><strong class="dog-title">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
 					}
 					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);
