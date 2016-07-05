@@ -1003,7 +1003,7 @@ var trackOutboundLink = function(url) {
 					};
 					var trHTML = '<div style="height: 100%; overflow:scroll;"><table class="table"><tbody>';
         				for (dog in response['dogs']) {
-            					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img class="results" src="' + "http://mykindofdog.com/" + 'favicon-96x96.png' + '" />' + '</td><td><strong class="dog-title">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
+            					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img class="results" src="' + "http://mykindofdog.com/" + 'static/img/results-page/' + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
 					}
 					trHTML += '</tbody></table></div>'
         				$('#selection-row').append(trHTML);
@@ -1019,7 +1019,7 @@ var trackOutboundLink = function(url) {
 						for (var dog in response['dogs']) {
 							console.log(response['dogs'][dog].dog_id);
 							if (response['dogs'][dog].dog_id == dog_id) {
-								dog_img = "http://mykindofdog.com/" + 'favicon-96x96.png';
+								dog_img = "http://mykindofdog.com/" + 'static/img/results-page/' + response['dogs'][dog].dog_img;
 								dog_name = response['dogs'][dog].dog_name;
 								dog_size = response['dogs'][dog].size;
 								dog_locality = response['dogs'][dog].locality;
