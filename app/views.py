@@ -93,7 +93,7 @@ def get_dogs(request):
     haircare_low = int(request.GET['haircare[low]'])
     haircare_high = int(request.GET['haircare[high]'])
 
-    all_dogs = models.Dog.objects.all()
+    all_dogs = models.Dog.objects.all().order_by('dog_name')
 
     size_dogs = all_dogs
     # filter for size
