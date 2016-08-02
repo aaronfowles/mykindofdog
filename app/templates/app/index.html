@@ -758,17 +758,18 @@ var trackOutboundLink = function(url) {
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-body">
-	<img id="modal-img" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
+      <div class="modal-body" style="font-size: 0.6em; overflow: scroll; height: 85%">
+	<img id="modal-img" style="display: block; margin: auto" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
         <h1 id="modal-name">Dog Breed Name</h1>
-	<span>Size: <span id="modal-size"></span></span><br>
-	<span>Locality: <span id="modal-locality"></span></span><br>
-	<span>Good for Allergies: <span id="modal-allergy"></span></span><br>
-	<span>Daily exercise: <span id="modal-exercise"></span></span><br>
-	<span>Grooming: <span id="modal-grooming"></span></span><br>
-	<p id="modal-desc"></p>
-	<h3>Useful Links</h3>
-	<p id="modal-links"><span><a href="http://www.hoperescue.org.uk" onclick="trackOutboundLink('http://www.hoperescue.org.uk'); return false">Hope Rescue</a></span></p>
+	<h5>How big are dogs of this breed? </h5><div id="modal-size" style="font-size: 1.0em"></div>
+	<h5>Is this breed more suited to Town or Country? </h5><div id="modal-locality"></div>
+	<h5>What is this breed like for people with allergies? </h5><div id="modal-allergy"></div>
+	<h5>How much daily exercise does this breed require? </h5><div id="modal-exercise"></div>
+	<h5>How often does this breed need to be groomed? </h5><div id="modal-grooming"></div>
+        <h2>Tell your friends</h2>
+	<div id="modal-desc" style="display: block; margin: auto; font-size: 4.0em"></div>
+	<h2>Useful Links</h2>
+        <p id="modal-links"><span><a href="http://www.hoperescue.org.uk" onclick="trackOutboundLink('http://www.hoperescue.org.uk'); return false">Hope Rescue</a></span></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-overide" data-dismiss="modal">Close</button>
