@@ -1006,8 +1006,37 @@ var trackOutboundLink = function(url) {
         				for (dog in response['dogs']) {
             					trHTML += '<tr class="dog_row" id="' + response['dogs'][dog].dog_id + '"><td>'+ '<img class="results" src="' + "http://mykindofdog.com/" + 'static/img/results-page/' + response['dogs'][dog].dog_img + '" />' + '</td><td><strong class="dog-title">' + response['dogs'][dog].dog_name + '</strong><br>' + response['dogs'][dog].size +  '<br>' + response['dogs'][dog].locality + '</td><td>' + '<img class="more-info" src="' + "http://mykindofdog.com/static" + "/img/results-page/more-info.png" +'" /' + '</td></tr>';
 					}
-					trHTML += '</tbody></table>';
-					trHTML += `<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="">
+					trHTML += '</tbody></table></div>';
+        				$('#selection-row').append(trHTML);
+					$(".more-info").click(function() {
+						var dog_img = "";
+						var dog_id = $(this).closest("tr").attr("id");
+						var dog_name = "";
+						var dog_size = "";
+						var dog_locality = "";
+						var dog_allergy = "";
+						var dog_exercise = "";
+						var dog_grooming = "";
+						for (var dog in response['dogs']) {
+							console.log(response['dogs'][dog].dog_id);
+							if (response['dogs'][dog].dog_id == dog_id) {
+								dog_img = "http://mykindofdog.com/" + 'static/img/results-page/' + response['dogs'][dog].dog_img;
+								dog_name = response['dogs'][dog].dog_name;
+								dog_size = response['dogs'][dog].size;
+								dog_locality = response['dogs'][dog].locality;
+								dog_allergy = response['dogs'][dog].allergies;
+								dog_exercise = response['dogs'][dog].exercise;
+								dog_grooming = response['dogs'][dog].haircare;
+							}
+						}
+						$("#modal-img").attr("src",dog_img);
+						$("#modal-name").text(dog_name);
+						$("#modal-size").text(dog_size);
+						$("#modal-locality").text(dog_locality);
+						$("#modal-allergy").text(dog_allergy);
+						$("#modal-exercise").text(dog_exercise);
+						$("#modal-grooming").text(dog_grooming);
+						trHTML = `<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="">
   <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
         <g>
@@ -1079,36 +1108,7 @@ var trackOutboundLink = function(url) {
   </div>
 </a>
 `;
-					trHTML += '</div>';
-        				$('#selection-row').append(trHTML);
-					$(".more-info").click(function() {
-						var dog_img = "";
-						var dog_id = $(this).closest("tr").attr("id");
-						var dog_name = "";
-						var dog_size = "";
-						var dog_locality = "";
-						var dog_allergy = "";
-						var dog_exercise = "";
-						var dog_grooming = "";
-						for (var dog in response['dogs']) {
-							console.log(response['dogs'][dog].dog_id);
-							if (response['dogs'][dog].dog_id == dog_id) {
-								dog_img = "http://mykindofdog.com/" + 'static/img/results-page/' + response['dogs'][dog].dog_img;
-								dog_name = response['dogs'][dog].dog_name;
-								dog_size = response['dogs'][dog].size;
-								dog_locality = response['dogs'][dog].locality;
-								dog_allergy = response['dogs'][dog].allergies;
-								dog_exercise = response['dogs'][dog].exercise;
-								dog_grooming = response['dogs'][dog].haircare;
-							}
-						}
-						$("#modal-img").attr("src",dog_img);
-						$("#modal-name").text(dog_name);
-						$("#modal-size").text(dog_size);
-						$("#modal-locality").text(dog_locality);
-						$("#modal-allergy").text(dog_allergy);
-						$("#modal-exercise").text(dog_exercise);
-						$("#modal-grooming").text(dog_grooming);
+						$("#modal-desc").append(trHTML);
 						$("#myModal").modal('show');
 					});
 				}
