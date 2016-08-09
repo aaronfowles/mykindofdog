@@ -759,13 +759,13 @@ var trackOutboundLink = function(url) {
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body" style="font-size: 2.0em; overflow: scroll; height: 85%">
-	<img id="modal-img" style="display: block; margin: auto" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
+	<img id="modal-img" style="display: block;" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
         <h1 id="modal-name">Dog Breed Name</h1>
-	<h5>How big are dogs of this breed? </h5><p id="modal-size"></p>
-	<h5>Is this breed more suited to Town or Country? </h5><p id="modal-locality"></p>
-	<h5>What is this breed like for people with allergies? </h5><p id="modal-allergy"></p>
-	<h5>How much daily exercise does this breed require? </h5><p id="modal-exercise"></p>
-	<h5>How often does this breed need to be groomed? </h5><p id="modal-grooming"></p>
+	<h2>Size:</h2><p id="modal-size"></p>
+	<h2>Habitat:</h2><p id="modal-locality"></p>
+	<h2>For allergy sufferers:</h2><p id="modal-allergy"></p>
+	<h2>Excercise (per day):</h2><p id="modal-exercise"></p>
+	<h2>Grooming (per week):</h2><p id="modal-grooming"></p>
         <h2>Tell your friends</h2>
 	<div id="modal-desc" style="display: block; margin: auto;"></div>
 	<h2>Useful Links</h2>
@@ -786,7 +786,7 @@ var trackOutboundLink = function(url) {
 	question_object["size"] = {};
 	question_object["size"]["question_no"] = 1;
 	question_object["size"]["question_attr"] = "size";
-	question_object["size"]["question_text"] = "Which size of dog do you prefer?";
+	question_object["size"]["question_text"] = "What size dog would you want?";
 	question_object["size"]["small_off"] = "{{question_obj.size.img_urls.small_off}}";
 	question_object["size"]["small_on"] = "{{question_obj.size.img_urls.small_on}}";
 	question_object["size"]["medium_off"] = "{{question_obj.size.img_urls.medium_off}}";
@@ -808,7 +808,7 @@ var trackOutboundLink = function(url) {
 	question_object["allergy"] = {};
 	question_object["allergy"]["question_no"] = 3;
 	question_object["allergy"]["question_attr"] = "allergy";
-	question_object["allergy"]["question_text"] = "Do you suffer from any allergies?";
+	question_object["allergy"]["question_text"] = "Are there any allergy sufferers in your home?";
 	question_object["allergy"]["yes_allergy_off"] = "{{question_obj.allergy.img_urls.yes_allergy_off}}";
 	question_object["allergy"]["yes_allergy_on"] = "{{question_obj.allergy.img_urls.yes_allergy_on}}";
 	question_object["allergy"]["no_allergy_off"] = "{{question_obj.allergy.img_urls.no_allergy_off}}";
@@ -817,7 +817,7 @@ var trackOutboundLink = function(url) {
 	question_object["exercise"] = {};
 	question_object["exercise"]["question_no"] = 4;
         question_object["exercise"]["question_attr"] = "exercise";
-        question_object["exercise"]["question_text"] = "How much exercise can you give your dog each day?";
+        question_object["exercise"]["question_text"] = "All dogs need excercise. What type of dog do you want?";
 	question_object["exercise"]["short_off"] = "{{question_obj.exercise.img_urls.short_off}}"; 
 	question_object["exercise"]["short_on"] = "{{question_obj.exercise.img_urls.short_on}}";
 	question_object["exercise"]["medium_off"] = "{{question_obj.exercise.img_urls.medium_off}}";
@@ -830,7 +830,7 @@ var trackOutboundLink = function(url) {
 	question_object["haircare"] = {};
 	question_object["haircare"]["question_no"] = 5;
         question_object["haircare"]["question_attr"] = "haircare";
-        question_object["haircare"]["question_text"] = "Do you have the time for a high maintenance dog?";
+        question_object["haircare"]["question_text"] = "All dogs need grooming. What type of dog do you want?";
 	question_object["haircare"]["low_off"] = "{{question_obj.haircare.img_urls.low_off}}";
 	question_object["haircare"]["low_on"] = "{{question_obj.haircare.img_urls.low_on}}";
 	question_object["haircare"]["high_off"] = "{{question_obj.haircare.img_urls.high_off}}";
