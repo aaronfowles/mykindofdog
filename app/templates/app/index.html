@@ -293,6 +293,11 @@
   		and (-webkit-min-device-pixel-ratio: 2)
   		and (orientation: portrait) {
 
+	.h1 {
+		font-size: 72px;
+		font-weight: 500;
+	}
+	
         #head_img {
                 margin-top: 25px;
                 margin-bottom: 25px;
@@ -404,8 +409,14 @@
 
         #modal-img {
                 width: 400px;
-		float: none;
+		float: left;
                 margin: 0 40px 40px 0;
+        }
+
+        #modal-name {
+                font-size: 72px;
+		font-weight: 500;
+		color: #000;
         }
 	}
 
@@ -415,6 +426,11 @@
                 and (max-device-width: 640px)
                 and (-webkit-min-device-pixel-ratio: 2)
                 and (orientation: landscape) {
+
+	.h1 {
+                font-size: 72px;
+                font-weight: 500;
+        }
 
         #head_img {
                 margin-top: 5px;
@@ -761,14 +777,22 @@ var trackOutboundLink = function(url) {
       <div class="modal-body" style="font-size: 2.0em; overflow: scroll; height: 85%">
 	<img id="modal-img" style="display: block;" src="http://mykindofdog.com/static/img/results-page/placeholder.jpg" />
         <h1 id="modal-name">Dog Breed Name</h1>
-	<h2>Size:</h2><p id="modal-size"></p>
-	<h2>Habitat:</h2><p id="modal-locality"></p>
-	<h2>For allergy sufferers:</h2><p id="modal-allergy"></p>
-	<h2>Excercise (per day):</h2><p id="modal-exercise"></p>
-	<h2>Grooming (per week):</h2><p id="modal-grooming"></p>
-        <h2>Tell your friends</h2>
+	<hr>
+	<strong class="dog-title" style="display:inline">Size: </strong><p id="modal-size" style="display:inline"></p>
+	<br>
+	<strong class="dog-title" style="display:inline">Habitat: </strong><p id="modal-locality" style="display:inline"></p>
+	<br>
+	<strong class="dog-title" style="display:inline">Allergy sufferers: </strong><p id="modal-allergy" style="display:inline"></p>
+	<br>
+	<strong class="dog-title" style="display:inline">Exercise (per day): </strong><p id="modal-exercise" style="display:inline"></p>
+	<br>
+	<strong class="dog-title" style="display:inline">Grooming (per week): </strong><p id="modal-grooming" style="display:inline"></p>
+        <br>
+	<hr>
+	<strong class="dog-title">Share with your friends:</strong>
 	<div id="modal-desc" style="display: block; margin: auto;"></div>
-	<h2>Useful Links</h2>
+	<hr>
+	<strong class="dog-title">Useful Links:</strong>
         <p id="modal-links"><span><a href="http://www.hoperescue.org.uk" onclick="trackOutboundLink('http://www.hoperescue.org.uk'); return false">Hope Rescue</a></span></p>
       </div>
       <div class="modal-footer">
